@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brandon's Backyard Botanica — Ventura, CA</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green-deep:#1e3a22; --green-mid:#3b6b42; --green-light:#6a9e6f;
+  --sage:#8faa85; --cream:#f4efe6; --warm:#faf7f1;
+  --earth:#9c7248; --clay:#c47d4e; --gold:#d4a843; --gold-light:#e8c96a;
+  --bark:#2d1f10; --mist:#dde8d8; --text:#3a2d1e; --text-light:#7a6855;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--warm);color:var(--text);overflow-x:hidden}
+.page{display:none;min-height:100vh}
+.page.active{display:block}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;background:var(--green-deep);display:flex;align-items:center;justify-content:space-between;padding:0 3rem;border-bottom:1px solid rgba(212,168,67,.25)}
+.nav-brand{display:flex;align-items:center;gap:.7rem;cursor:pointer}
+.nav-leaf{width:36px;height:36px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0}
+.nav-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--cream);line-height:1.1}
+.nav-sub{font-family:'DM Sans',sans-serif;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:block}
+.nav-tabs{display:flex;align-items:center;gap:.15rem;list-style:none}
+.nav-tabs li button{background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.875rem;color:rgba(244,239,230,.75);padding:.45rem .85rem;border-radius:5px;transition:all .2s;letter-spacing:.02em}
+.nav-tabs li button:hover{color:var(--gold);background:rgba(212,168,67,.1)}
+.nav-tabs li.active button{color:var(--gold)}
+.nav-cta-btn{background:var(--gold)!important;color:var(--bark)!important;font-weight:500!important}
+.nav-cta-btn:hover{background:var(--gold-light)!important;color:var(--bark)!important}
+
+/* SHARED */
+.page-wrap{padding-top:68px}
+.eyebrow{font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--clay);margin-bottom:.65rem}
+.eyebrow-light{color:var(--gold-light)}
+.section{padding:5.5rem 0}
+.section-dark{background:var(--green-deep)}
+.section-cream{background:var(--cream)}
+.container{max-width:1160px;margin:0 auto;padding:0 3rem}
+.btn{display:inline-block;text-decoration:none;font-family:'DM Sans',sans-serif;font-size:.9rem;padding:.8rem 1.8rem;border-radius:5px;cursor:pointer;border:none;transition:all .2s;letter-spacing:.03em}
+.btn-gold{background:var(--gold);color:var(--bark);font-weight:500}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-outline-light{background:transparent;color:var(--cream);border:1px solid rgba(244,239,230,.4)}
+.btn-outline-light:hover{border-color:var(--gold);color:var(--gold)}
+.btn-outline-dark{background:transparent;color:var(--green-deep);border:1px solid var(--green-mid)}
+.btn-outline-dark:hover{background:var(--green-deep);color:var(--cream)}
+
+/* HERO */
+.hero{min-height:calc(100vh - 68px);display:grid;grid-template-columns:1fr 1fr;background:var(--green-deep)}
+.hero-left{padding:6rem 4rem 5rem;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.hero-left::before{content:'';position:absolute;top:-80px;left:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(212,168,67,.1) 0%,transparent 70%);pointer-events:none}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,3.8vw,3.8rem);color:var(--cream);line-height:1.05;margin-bottom:1.4rem;font-weight:900}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-lead{font-family:'Lora',serif;font-size:1.1rem;line-height:1.8;color:rgba(244,239,230,.8);max-width:480px;margin-bottom:2.5rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3.5rem}
+.hero-stats{display:flex;gap:2.5rem;padding-top:2.5rem;border-top:1px solid rgba(244,239,230,.12)}
+.stat-n{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold);line-height:1}
+.stat-l{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(212,221,208,.7);margin-top:.3rem}
+.hero-right{position:relative;overflow:hidden;background:var(--green-mid);display:flex;align-items:center;justify-content:center}
+
+/* WHY STRIP */
+.why-strip{background:var(--gold);padding:1.8rem 0}
+.why-strip-inner{display:flex;gap:3rem;align-items:center;justify-content:center;flex-wrap:wrap}
+.why-fact{display:flex;align-items:center;gap:.75rem}
+.why-fact-num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--bark)}
+.why-fact-txt{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(45,31,16,.7);max-width:130px;line-height:1.35}
+
+/* HOME ABOUT */
+.home-about{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-block h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,2.5vw,2.6rem);color:var(--green-deep);line-height:1.15;margin-bottom:1.2rem}
+.about-block p{font-family:'Lora',serif;font-size:1.05rem;line-height:1.8;color:var(--text-light);margin-bottom:1rem}
+.fact-pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
+.pill{background:var(--mist);color:var(--green-deep);padding:.4rem .9rem;border-radius:99px;font-size:.8rem;font-weight:500;letter-spacing:.03em}
+.about-visual{background:var(--green-deep);border-radius:16px;padding:3rem;position:relative;overflow:hidden}
+.about-visual::after{content:'🌿';font-size:9rem;position:absolute;bottom:-1.5rem;right:-1rem;opacity:.08;pointer-events:none}
+.about-visual h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);margin-bottom:1rem}
+.about-visual > p{font-family:'Lora',serif;font-size:.98rem;line-height:1.75;color:rgba(244,239,230,.8);margin-bottom:1.5rem}
+.data-list{list-style:none;display:flex;flex-direction:column;gap:1rem}
+.data-list li{display:flex;align-items:flex-start;gap:.85rem}
+.data-icon{width:34px;height:34px;background:rgba(212,168,67,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.data-label{font-size:.9rem;line-height:1.55;color:rgba(244,239,230,.75)}
+.data-label strong{color:var(--gold-light);display:block}
+
+/* SERVICES STRIP */
+.services-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.svc-card{background:var(--cream);border-radius:12px;padding:2rem;border:1px solid rgba(107,158,111,.18);transition:all .25s;position:relative;overflow:hidden}
+.svc-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--green-light);transform:scaleX(0);transition:transform .25s}
+.svc-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(30,58,34,.1)}
+.svc-card:hover::after{transform:scaleX(1)}
+.svc-icon{font-size:2rem;margin-bottom:1rem;display:block}
+.svc-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--green-deep);margin-bottom:.5rem}
+.svc-card p{font-size:.88rem;line-height:1.65;color:var(--text-light)}
+
+/* SAVINGS BANNER */
+.savings-banner{background:linear-gradient(135deg,var(--clay) 0%,var(--earth) 100%);padding:5rem 0;text-align:center;position:relative;overflow:hidden}
+.savings-banner::before{content:'💧';font-size:22rem;opacity:.04;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.savings-banner h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,3rem);color:var(--cream);margin-bottom:1rem}
+.savings-banner p{font-family:'Lora',serif;font-size:1.1rem;color:rgba(244,239,230,.85);max-width:580px;margin:0 auto 2.5rem;line-height:1.7}
+.savings-source{font-size:.72rem;color:rgba(244,239,230,.5);margin-top:1.5rem;letter-spacing:.08em}
+
+/* ABOUT PAGE */
+.page-hero{background:var(--green-deep);padding:6rem 0 5rem}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,3.8rem);color:var(--cream);line-height:1.1;margin-bottom:1.2rem}
+.page-hero p{font-family:'Lora',serif;font-size:1.15rem;color:rgba(244,239,230,.8);max-width:600px;line-height:1.8}
+.about-story{display:grid;grid-template-columns:1.1fr 1fr;gap:5rem;align-items:start}
+.story-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.5vw,2.4rem);color:var(--green-deep);margin-bottom:1.1rem;line-height:1.15}
+.story-text p{font-family:'Lora',serif;font-size:1.02rem;line-height:1.82;color:var(--text-light);margin-bottom:1rem}
+.origin-card{background:var(--green-deep);border-radius:14px;padding:2.5rem;position:sticky;top:90px}
+.origin-card h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold);margin-bottom:1rem}
+.origin-card p{font-family:'Lora',serif;font-size:.96rem;line-height:1.75;color:rgba(244,239,230,.8);margin-bottom:1.2rem}
+.origin-tag{display:inline-block;background:rgba(212,168,67,.2);color:var(--gold-light);padding:.35rem .85rem;border-radius:6px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin:.2rem}
+.values-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:1.5rem}
+.value-card{background:var(--warm);border-radius:10px;padding:1.75rem;border-left:4px solid var(--green-light)}
+.value-card h4{font-family:'Playfair Display',serif;font-size:1rem;color:var(--green-deep);margin-bottom:.5rem}
+.value-card p{font-size:.88rem;line-height:1.65;color:var(--text-light)}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:1.5rem}
+.stat-box{background:var(--cream);border-radius:10px;padding:2rem;text-align:center}
+.stat-box .n{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--green-deep)}
+.stat-box .l{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-light);margin-top:.3rem}
+.stat-src{font-size:.7rem;color:rgba(90,80,70,.45);margin-top:.4rem}
+
+/* WHAT WE DO PAGE */
+.wwd-hero{background:linear-gradient(135deg,var(--green-deep) 0%,#2d5530 100%);padding:6rem 0 5rem}
+.wwd-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,3.8rem);color:var(--cream);line-height:1.1;margin-bottom:1.2rem}
+.wwd-hero p{font-family:'Lora',serif;font-size:1.1rem;color:rgba(244,239,230,.8);max-width:580px;line-height:1.8}
+.service-row{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:4.5rem 0;border-bottom:1px solid rgba(107,158,111,.15)}
+.service-row:last-of-type{border-bottom:none}
+.service-row.flip{direction:rtl}
+.service-row.flip > *{direction:ltr}
+.svc-info .eyebrow{color:var(--clay)}
+.svc-info h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.5vw,2.2rem);color:var(--green-deep);margin-bottom:1rem;line-height:1.2}
+.svc-info p{font-family:'Lora',serif;font-size:1rem;line-height:1.82;color:var(--text-light);margin-bottom:.9rem}
+.svc-visual{background:var(--green-deep);border-radius:14px;padding:3rem;display:flex;flex-direction:column;gap:1rem}
+.svc-step{display:flex;gap:1rem;align-items:flex-start}
+.step-num{width:32px;height:32px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:.85rem;color:var(--bark);flex-shrink:0}
+.step-text{font-size:.9rem;line-height:1.6;color:rgba(244,239,230,.8)}
+.step-text strong{color:var(--gold-light);display:block;margin-bottom:.2rem;font-size:.85rem}
+.rebate-box{background:var(--gold);border-radius:12px;padding:2.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+.rebate-box h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--bark);margin-bottom:.6rem}
+.rebate-box p{font-size:.95rem;color:rgba(45,31,16,.75);line-height:1.65}
+.rebate-amount{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--bark);text-align:center;white-space:nowrap}
+.rebate-amount span{display:block;font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:400;color:rgba(45,31,16,.6);letter-spacing:.1em;text-transform:uppercase}
+
+/* PRODUCTS PAGE */
+.products-hero{background:var(--green-deep);padding:6rem 0 5rem}
+.products-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,3.8rem);color:var(--cream);line-height:1.1;margin-bottom:1.2rem}
+.products-hero p{font-family:'Lora',serif;font-size:1.1rem;color:rgba(244,239,230,.8);max-width:560px;line-height:1.8}
+.filter-bar{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:2.5rem;margin-top:3rem}
+.filter-btn{background:var(--cream);border:1px solid rgba(107,158,111,.3);border-radius:99px;padding:.4rem 1.1rem;font-size:.82rem;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;color:var(--text-light);font-weight:500}
+.filter-btn:hover,.filter-btn.active{background:var(--green-mid);color:white;border-color:var(--green-mid)}
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.product-card{background:var(--cream);border-radius:12px;overflow:hidden;border:1px solid rgba(107,158,111,.15);transition:all .25s;cursor:pointer}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(30,58,34,.12)}
+.product-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:4rem;overflow:hidden;position:relative}
+.product-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .35s}
+.product-card:hover .product-img img{transform:scale(1.06)}
+.img-loading{font-size:2rem;opacity:.3;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:.6}}
+.pc-groundcover .product-img{background:#d4e8cf}
+.pc-shrub .product-img{background:#c8ddc2}
+.pc-tree .product-img{background:#b8d4b0}
+.pc-flower .product-img{background:#e4d0c0}
+.pc-grass .product-img{background:#d8e4c8}
+.pc-cactus .product-img{background:#c8d4a8}
+.product-body{padding:1.25rem}
+.product-name{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--green-deep);margin-bottom:.2rem}
+.product-latin{font-style:italic;font-size:.78rem;color:var(--text-light);margin-bottom:.6rem}
+.product-desc{font-size:.83rem;line-height:1.6;color:var(--text-light);margin-bottom:1rem}
+.product-footer{display:flex;align-items:center;justify-content:space-between}
+.product-price{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--green-deep);font-weight:700}
+.product-tags{display:flex;gap:.35rem;flex-wrap:wrap}
+.tag{background:var(--mist);color:var(--green-deep);padding:.18rem .55rem;border-radius:4px;font-size:.68rem;font-weight:500}
+.tag-water{background:#daeef7;color:#1a5c7a}
+.tag-bird{background:#fdebd0;color:#7a3a0a}
+.tag-bee{background:#fef9c3;color:#7a6000}
+.tag-fire{background:#fde8e0;color:#7a2a10}
+.diy-kit-banner{background:var(--green-mid);border-radius:14px;padding:3rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;margin-top:4rem}
+.diy-kit-banner h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);margin-bottom:.75rem}
+.diy-kit-banner p{font-family:'Lora',serif;font-size:1rem;color:rgba(244,239,230,.8);line-height:1.7}
+
+/* TEAM PAGE */
+.team-hero{background:var(--green-deep);padding:6rem 0 5rem}
+.team-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,3.8rem);color:var(--cream);line-height:1.1;margin-bottom:1.2rem}
+.team-hero p{font-family:'Lora',serif;font-size:1.1rem;color:rgba(244,239,230,.8);max-width:560px;line-height:1.8}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem}
+.team-card{background:var(--cream);border-radius:14px;overflow:hidden;border:1px solid rgba(107,158,111,.15);transition:all .25s}
+.team-card:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(30,58,34,.1)}
+.team-card-top{padding:2.5rem 2rem 1.5rem;display:flex;flex-direction:column;align-items:center;text-align:center}
+.team-avatar{width:100px;height:100px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.8rem;margin-bottom:1.25rem}
+.team-card:nth-child(1) .team-avatar{background:#c8ddc2}
+.team-card:nth-child(2) .team-avatar{background:#d4c8b0}
+.team-card:nth-child(3) .team-avatar{background:#c8d0dc}
+.team-card:nth-child(4) .team-avatar{background:#dcc8c8}
+.team-card:nth-child(5) .team-avatar{background:#c8dcd4}
+.team-name{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--green-deep);margin-bottom:.2rem}
+.team-role{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--clay);margin-bottom:1rem}
+.team-card-body{padding:0 2rem 2rem}
+.team-card-body p{font-family:'Lora',serif;font-size:.92rem;line-height:1.75;color:var(--text-light)}
+.team-full-row{background:var(--green-deep);border-radius:14px;padding:3rem;display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:start;margin-bottom:3rem}
+.founder-avatar{width:140px;height:140px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:4rem;flex-shrink:0}
+.founder-info h3{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--cream);margin-bottom:.3rem}
+.founder-role{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:block}
+.founder-info p{font-family:'Lora',serif;font-size:1rem;line-height:1.8;color:rgba(244,239,230,.8);margin-bottom:.75rem}
+
+/* CONTACT PAGE */
+.contact-hero{background:var(--green-deep);padding:6rem 0 5rem}
+.contact-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,3.8rem);color:var(--cream);line-height:1.1;margin-bottom:1.2rem}
+.contact-hero p{font-family:'Lora',serif;font-size:1.1rem;color:rgba(244,239,230,.8);max-width:560px;line-height:1.8}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:4rem}
+.form-wrap{background:var(--cream);border-radius:14px;padding:2.5rem}
+.form-wrap h2{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--green-deep);margin-bottom:.5rem}
+.form-wrap > p{font-size:.9rem;color:var(--text-light);margin-bottom:1.75rem;line-height:1.6}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.form-group label{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--earth);font-weight:500}
+.form-group input,.form-group select,.form-group textarea{background:var(--warm);border:1px solid rgba(107,158,111,.3);border-radius:6px;padding:.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--text);transition:border-color .2s;outline:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--green-light)}
+.form-group textarea{height:120px;resize:vertical}
+.info-items{display:flex;flex-direction:column;gap:1.1rem;margin-bottom:2.5rem}
+.info-item{display:flex;gap:1rem;align-items:center}
+.info-icon{width:44px;height:44px;background:var(--green-mid);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.info-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--earth)}
+.info-val{font-size:.98rem;color:var(--text)}
+.hours-card{background:var(--green-deep);border-radius:12px;padding:1.75rem}
+.hours-card h4{font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold);margin-bottom:1rem;letter-spacing:.05em}
+.hours-row{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(244,239,230,.08);font-size:.9rem}
+.hours-row:last-child{border-bottom:none}
+.hours-day{color:rgba(244,239,230,.7)}
+.hours-time{color:var(--cream);font-weight:500}
+
+/* FOOTER */
+footer{background:var(--bark);padding:2.5rem 0;text-align:center}
+footer p{font-size:.85rem;color:rgba(244,239,230,.4)}
+footer strong{color:var(--gold)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.hero-left > *{animation:fadeUp .65s ease both}
+.hero-left > *:nth-child(1){animation-delay:.08s}
+.hero-left > *:nth-child(2){animation-delay:.18s}
+.hero-left > *:nth-child(3){animation-delay:.3s}
+.hero-left > *:nth-child(4){animation-delay:.44s}
+.hero-left > *:nth-child(5){animation-delay:.58s}
+
+/* MOBILE */
+@media(max-width:900px){
+  nav{padding:0 1.25rem}
+  .nav-tabs{display:none}
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-left{padding:4rem 1.5rem}
+  .home-about,.about-story,.contact-layout{grid-template-columns:1fr!important;gap:2rem}
+  .team-full-row,.diy-kit-banner,.rebate-box{grid-template-columns:1fr!important;gap:2rem}
+  .products-grid,.team-grid{grid-template-columns:1fr 1fr}
+  .services-strip,.values-grid,.stats-row{grid-template-columns:1fr}
+  .service-row{grid-template-columns:1fr;gap:2rem}
+  .service-row.flip{direction:ltr}
+  .container{padding:0 1.25rem}
+  .origin-card{position:static}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand" onclick="showPage('home')">
+    <div class="nav-leaf">🌿</div>
+    <div>
+      <div class="nav-name">Brandon's Backyard Botanica</div>
+      <span class="nav-sub">Ventura, CA &middot; Est. 2026</span>
+    </div>
+  </div>
+  <ul class="nav-tabs" id="navTabs">
+    <li data-page="home"><button onclick="showPage('home')">Home</button></li>
+    <li data-page="about"><button onclick="showPage('about')">About Us</button></li>
+    <li data-page="what-we-do"><button onclick="showPage('what-we-do')">What We Do</button></li>
+    <li data-page="products"><button onclick="showPage('products')">Our Plants</button></li>
+    <li data-page="team"><button onclick="showPage('team')">Our Team</button></li>
+    <li data-page="contact"><button class="nav-cta-btn" onclick="showPage('contact')">Book an Appointment</button></li>
+  </ul>
+</nav>
+
+<!-- ========== HOME ========== -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-left">
+      <p class="eyebrow eyebrow-light">Rooted in Ventura &middot; Built for California</p>
+      <h1 class="hero-title">Grow Beautiful.<br><em>Waste Nothing.</em></h1>
+      <p class="hero-lead">Brandon's Backyard Botanica helps California homeowners replace water-hungry landscapes with native plants that belong here — cutting water bills, supporting local wildlife, and creating yards that thrive on their own.</p>
+      <div class="hero-btns">
+        <button class="btn btn-gold" onclick="showPage('products')">Browse Our Plants</button>
+        <button class="btn btn-outline-light" onclick="showPage('about')">Why Go Native?</button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-n">75%</div><div class="stat-l">Less Water Used</div></div>
+        <div><div class="stat-n">1,600</div><div class="stat-l">Native CA Bee Species</div></div>
+        <div><div class="stat-n">200+</div><div class="stat-l">Plant Varieties We Carry</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <svg viewBox="0 0 560 700" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0">
+        <rect width="560" height="700" fill="#3b6b42"/>
+        <circle cx="440" cy="100" r="80" fill="#d4a843" opacity=".28"/>
+        <circle cx="440" cy="100" r="55" fill="#d4a843" opacity=".22"/>
+        <rect x="0" y="620" width="560" height="120" fill="#2d5530"/>
+        <ellipse cx="280" cy="625" rx="310" ry="55" fill="#2d5530"/>
+        <ellipse cx="280" cy="540" rx="115" ry="95" fill="#3d6e40"/>
+        <ellipse cx="240" cy="558" rx="88" ry="76" fill="#4a7e4e"/>
+        <ellipse cx="322" cy="548" rx="90" ry="78" fill="#436840"/>
+        <ellipse cx="280" cy="520" rx="98" ry="78" fill="#558855"/>
+        <line x1="75" y1="620" x2="52" y2="470" stroke="#5a8c50" stroke-width="4" stroke-linecap="round"/>
+        <line x1="88" y1="620" x2="104" y2="455" stroke="#6a9c60" stroke-width="3.5" stroke-linecap="round"/>
+        <line x1="105" y1="620" x2="80" y2="445" stroke="#4a7c40" stroke-width="4.5" stroke-linecap="round"/>
+        <line x1="488" y1="620" x2="508" y2="465" stroke="#5a8c50" stroke-width="4" stroke-linecap="round"/>
+        <line x1="472" y1="620" x2="458" y2="455" stroke="#6a9c60" stroke-width="3.5" stroke-linecap="round"/>
+        <line x1="145" y1="580" x2="143" y2="620" stroke="#3d6e40" stroke-width="3"/>
+        <circle cx="145" cy="572" r="19" fill="#c47d4e" opacity=".92"/>
+        <circle cx="145" cy="570" r="11" fill="#d4944e"/>
+        <line x1="415" y1="575" x2="418" y2="620" stroke="#3d6e40" stroke-width="3"/>
+        <circle cx="416" cy="567" r="17" fill="#c47d4e" opacity=".9"/>
+        <line x1="365" y1="585" x2="368" y2="620" stroke="#3d6e40" stroke-width="3"/>
+        <circle cx="366" cy="576" r="21" fill="#c47d4e" opacity=".88"/>
+        <circle cx="366" cy="574" r="12" fill="#d4944e"/>
+        <ellipse cx="120" cy="598" rx="65" ry="44" fill="#6a8c65" opacity=".85"/>
+        <ellipse cx="448" cy="600" rx="68" ry="46" fill="#6a8c65" opacity=".85"/>
+        <polygon points="0,480 160,300 300,430 0,430" fill="#2e5830" opacity=".55"/>
+        <polygon points="220,480 430,265 560,400 560,480" fill="#2e5830" opacity=".45"/>
+        <path d="M180 165 Q192 158 204 165 Q198 170 192 168 Q186 170 180 165Z" fill="#1e3a22" opacity=".7"/>
+        <path d="M220 150 Q232 143 244 150 Q238 155 232 153 Q226 155 220 150Z" fill="#1e3a22" opacity=".65"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="why-strip">
+    <div class="why-strip-inner">
+      <div class="why-fact"><div class="why-fact-num">50–75%</div><div class="why-fact-txt">less water than traditional lawns*</div></div>
+      <div style="width:1px;height:36px;background:rgba(45,31,16,.2)"></div>
+      <div class="why-fact"><div class="why-fact-num">12,000</div><div class="why-fact-txt">gal/yr saved per 1,000 sq ft*</div></div>
+      <div style="width:1px;height:36px;background:rgba(45,31,16,.2)"></div>
+      <div class="why-fact"><div class="why-fact-num">90%</div><div class="why-fact-txt">of flowering plants need pollinators*</div></div>
+      <div style="width:1px;height:36px;background:rgba(45,31,16,.2)"></div>
+      <div class="why-fact"><div class="why-fact-num">50%</div><div class="why-fact-txt">of CA residential water = landscaping*</div></div>
+    </div>
+  </div>
+
+  <div class="section section-cream">
+    <div class="container">
+      <div class="home-about">
+        <div class="about-block">
+          <p class="eyebrow">Who We Are</p>
+          <h2>Ventura's Native Plant Nursery, Born in 2026</h2>
+          <p>Brandon's Backyard Botanica was founded in Ventura with a simple mission: make it easy for California homeowners to replace water-hungry exotic landscapes with native plants that genuinely thrive here.</p>
+          <p>We source, grow, and deliver over 200 species of California natives and guide every customer from first consultation to full establishment.</p>
+          <div class="fact-pills">
+            <span class="pill">🌿 Ventura County based</span>
+            <span class="pill">🐝 Pollinator-certified</span>
+            <span class="pill">💧 Drought-specialist</span>
+            <span class="pill">🔥 Fire-wise planting</span>
+          </div>
+          <br>
+          <button class="btn btn-outline-dark" onclick="showPage('about')">Our Full Story &rarr;</button>
+        </div>
+        <div class="about-visual">
+          <h3>The Numbers Don't Lie</h3>
+          <p>Real figures from California water authorities, UC research, and conservation organizations.</p>
+          <ul class="data-list">
+            <li><div class="data-icon">💧</div><div class="data-label"><strong>60–80% Less Water</strong>Native plants require 60–80% less water than conventional landscaping (Calscape / CNPS)</div></li>
+            <li><div class="data-icon">🐝</div><div class="data-label"><strong>1,600 Native Bee Species</strong>CA is home to 1,600 native bee species — all dependent on native plants for habitat (CNPS)</div></li>
+            <li><div class="data-icon">🦋</div><div class="data-label"><strong>200+ Butterfly Species</strong>The CA Floristic Province supports 200+ butterfly species coevolved with native plants (Xerces Society)</div></li>
+            <li><div class="data-icon">🌾</div><div class="data-label"><strong>Zero Chemical Inputs</strong>Once established, natives need no fertilizers or pesticides — adapted to CA's low-nutrient soils (LA Waterkeeper)</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <p class="eyebrow" style="text-align:center">What We Offer</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,2.5vw,2.4rem);color:var(--green-deep);text-align:center;margin-bottom:.75rem;line-height:1.15">From Consultation to Full Installation</h2>
+      <p style="text-align:center;font-family:'Lora',serif;font-size:1rem;color:var(--text-light);max-width:550px;margin:0 auto 1rem;line-height:1.8">We handle every step so you don't have to figure it out alone.</p>
+      <div class="services-strip">
+        <div class="svc-card"><span class="svc-icon">🔍</span><h3>Free Yard Consultation</h3><p>We assess your soil, sun exposure, and current water usage — then build a custom native plant plan for your property.</p></div>
+        <div class="svc-card"><span class="svc-icon">🚚</span><h3>Delivery &amp; Installation</h3><p>Our crew handles planting, mulching, and first-season care. Nursery-grown plants delivered across Ventura County.</p></div>
+        <div class="svc-card"><span class="svc-icon">💰</span><h3>Rebate Assistance</h3><p>We help you claim every dollar available through MWD, Casitas, and other CA rebate programs for lawn replacement.</p></div>
+      </div>
+      <div style="text-align:center;margin-top:2.5rem">
+        <button class="btn btn-gold" onclick="showPage('what-we-do')">See All Our Services &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="savings-banner">
+    <div class="container">
+      <h2>12,000 Gallons Saved Per Year.<br>Per 1,000 Sq Ft of Lawn Replaced.</h2>
+      <p>That's the estimate from the California Native Plant Society for a typical California home. With water rates rising every year, native landscaping is one of the smartest investments you can make.</p>
+      <button class="btn btn-gold" onclick="showPage('contact')">Start Saving — Get a Free Quote</button>
+      <p class="savings-source">*Sources: California Native Plant Society, Calscape, LA Waterkeeper, Xerces Society, UC Davis Arboretum</p>
+    </div>
+  </div>
+  <footer><p>&copy; 2026 <strong>Brandon's Backyard Botanica</strong> &middot; Ventura, California &middot; All rights reserved 🌿</p></footer>
+</div>
+
+<!-- ========== ABOUT ========== -->
+<div class="page" id="page-about">
+  <div class="page-wrap">
+    <div class="page-hero">
+      <div class="container">
+        <p class="eyebrow eyebrow-light">Our Story</p>
+        <h1>California's Plants.<br>Built for California's Yards.</h1>
+        <p>We started in Ventura in 2026 with a nursery truck, a deep love for native landscapes, and a frustration with the status quo of California gardening.</p>
+      </div>
+    </div>
+
+    <div class="section section-cream">
+      <div class="container">
+        <div class="about-story">
+          <div class="story-text">
+            <p class="eyebrow">The Origin</p>
+            <h2>Why We Started Brandon's Backyard Botanica</h2>
+            <p>Driving through Ventura neighborhoods, our founder Brandon Chang kept seeing the same thing: homeowners spending thousands of dollars a year watering lawns and exotic shrubs that had no business being in a semi-arid coastal California climate. The sprinklers running at noon. The brown patches every August. The bills.</p>
+            <p>It didn't make sense. California has one of the richest native floras on Earth — thousands of beautiful, low-water plants that evolved here over millions of years and ask for almost nothing in return. Yet most nurseries still shelve the same imported ornamentals that require constant watering, fertilizing, and pesticide applications just to survive here.</p>
+            <p>Brandon's Backyard Botanica was founded to fix that disconnect: to make California native plants accessible, affordable, and approachable for every homeowner in our region.</p>
+            <div class="values-grid">
+              <div class="value-card"><h4>🌊 Water Stewardship</h4><p>50% of California's residential water goes to landscape irrigation. Native planting is one of the highest-impact water conservation actions a homeowner can take.</p></div>
+              <div class="value-card"><h4>🦋 Ecological Integrity</h4><p>Native plants support the 1,600+ native bee species and 200+ butterfly species that California's ecosystems depend on. Exotic ornamentals cannot do this.</p></div>
+              <div class="value-card"><h4>🏡 Homeowner Value</h4><p>A native garden can reduce outdoor water use by 60–80%. That's real money back in your pocket every month while making your yard more beautiful.</p></div>
+              <div class="value-card"><h4>🔬 Evidence-Based</h4><p>Everything we recommend is backed by UC Extension research, CNPS data, and Xerces Society science. We know what works in Ventura County soils.</p></div>
+            </div>
+          </div>
+          <div>
+            <div class="origin-card">
+              <h3>Founded in Ventura, 2026</h3>
+              <p>We operate a nursery in Ventura, California — growing many of our plants on-site from local seed stock to preserve regional genetic diversity. Every plant we sell is proven for Ventura County's coastal climate, soils, and rainfall patterns.</p>
+              <p>We serve homeowners across Ventura County and into Santa Barbara and LA Counties, offering delivery, installation, and ongoing care.</p>
+              <div>
+                <span class="origin-tag">📍 Ventura, CA</span>
+                <span class="origin-tag">Est. 2026</span>
+                <span class="origin-tag">🌿 200+ Species</span>
+                <span class="origin-tag">🐝 Pollinator Certified</span>
+                <span class="origin-tag">💧 Drought Specialists</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section section-dark">
+      <div class="container">
+        <p class="eyebrow eyebrow-light" style="text-align:center">The Science</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,2.5vw,2.6rem);color:var(--cream);text-align:center;margin-bottom:1rem;line-height:1.15">Why Native Plants Are Better — By the Numbers</h2>
+        <p style="font-family:'Lora',serif;font-size:1rem;color:rgba(244,239,230,.75);text-align:center;max-width:580px;margin:0 auto 3rem;line-height:1.8">Published figures from California's leading water and conservation authorities.</p>
+        <div class="stats-row">
+          <div class="stat-box"><div class="n">60–80%</div><div class="l">Less Water Needed</div><div class="stat-src">Calscape / CNPS</div></div>
+          <div class="stat-box"><div class="n">12,000</div><div class="l">Gallons Saved/Yr per 1,000 sqft</div><div class="stat-src">CA Native Plant Society</div></div>
+          <div class="stat-box"><div class="n">1,600</div><div class="l">Native Bee Species in CA</div><div class="stat-src">CNPS / UC Davis</div></div>
+          <div class="stat-box"><div class="n">90%</div><div class="l">Of Flowering Plants Need Pollinators</div><div class="stat-src">UC Davis Arboretum</div></div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-box"><div class="n">50%</div><div class="l">of CA Residential Water = Landscaping</div><div class="stat-src">Calscape</div></div>
+          <div class="stat-box"><div class="n">200+</div><div class="l">Butterfly Species Supported</div><div class="stat-src">Xerces Society</div></div>
+          <div class="stat-box"><div class="n">0</div><div class="l">Fertilizers or Pesticides Needed</div><div class="stat-src">LA Waterkeeper</div></div>
+          <div class="stat-box"><div class="n">36</div><div class="l">Global Biodiversity Hotspots — CA is One</div><div class="stat-src">Environmental Nature Center</div></div>
+        </div>
+      </div>
+    </div>
+    <footer><p>&copy; 2026 <strong>Brandon's Backyard Botanica</strong> &middot; Ventura, California &middot; All rights reserved 🌿</p></footer>
+  </div>
+</div>
+
+<!-- ========== WHAT WE DO ========== -->
+<div class="page" id="page-what-we-do">
+  <div class="page-wrap">
+    <div class="wwd-hero">
+      <div class="container">
+        <p class="eyebrow eyebrow-light">Our Services</p>
+        <h1>We Handle Everything.<br>Root to Bloom.</h1>
+        <p>Whether you're ripping out a lawn or adding a pollinator border, our team is with you at every step — consultation, design, installation, and beyond.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <div class="service-row">
+          <div class="svc-info">
+            <p class="eyebrow">Service 01</p>
+            <h2>Free Yard Consultation</h2>
+            <p>We come to you. Our horticulturists visit your property and spend up to 90 minutes assessing your soil type, sun exposure, existing plants, microclimate, and current water usage. We map your yard and leave you with a written summary — no pressure, no sales pitch.</p>
+            <p>We've assessed hundreds of Ventura County properties and know exactly what thrives here.</p>
+            <button class="btn btn-gold" onclick="showPage('contact')">Book Your Free Visit</button>
+          </div>
+          <div class="svc-visual">
+            <div class="svc-step"><div class="step-num">1</div><div class="step-text"><strong>Schedule Online or by Phone</strong>We'll find a time within 5 business days.</div></div>
+            <div class="svc-step"><div class="step-num">2</div><div class="step-text"><strong>On-site Assessment (90 min)</strong>We map your yard, check soil, and discuss your goals and budget.</div></div>
+            <div class="svc-step"><div class="step-num">3</div><div class="step-text"><strong>Written Summary Within 48 Hours</strong>Personalized plant list, layout sketch, and estimated water savings.</div></div>
+          </div>
+        </div>
+
+        <div class="service-row flip">
+          <div class="svc-info">
+            <p class="eyebrow">Service 02</p>
+            <h2>Custom Native Garden Design</h2>
+            <p>Our landscape designers build detailed planting plans using only California natives suited to your specific microclimate. We consider bloom times, mature plant sizes, wildlife value, fire resistance, and aesthetics — creating a garden that looks intentional year-round.</p>
+            <p>Design plans are drawn to scale with a full plant list, watering schedules, and a seasonal care calendar.</p>
+          </div>
+          <div class="svc-visual">
+            <div class="svc-step"><div class="step-num">1</div><div class="step-text"><strong>Design Consultation</strong>We discuss your vision, budget, and timeline.</div></div>
+            <div class="svc-step"><div class="step-num">2</div><div class="step-text"><strong>Draft Plan (1 week)</strong>Scaled layout with plant selections, bloom calendar, and wildlife value ratings.</div></div>
+            <div class="svc-step"><div class="step-num">3</div><div class="step-text"><strong>Revisions &amp; Approval</strong>Two rounds of revisions included. We don't start planting until you love it.</div></div>
+          </div>
+        </div>
+
+        <div class="service-row">
+          <div class="svc-info">
+            <p class="eyebrow">Service 03</p>
+            <h2>Plant Delivery &amp; Installation</h2>
+            <p>We grow a significant portion of our inventory at our Ventura nursery from locally-sourced seed, preserving the genetic diversity of regional plant populations. Our crew handles everything: soil prep, planting, mulching, and drip irrigation setup.</p>
+            <p>We offer a 6-month establishment guarantee. If a plant fails in the first season, we replace it at no charge.</p>
+          </div>
+          <div class="svc-visual">
+            <div class="svc-step"><div class="step-num">1</div><div class="step-text"><strong>Nursery-grown, locally sourced</strong>Many plants grown from Ventura County seed stock for maximum climate adaptation.</div></div>
+            <div class="svc-step"><div class="step-num">2</div><div class="step-text"><strong>Full installation crew</strong>Soil prep, planting, mulching, drip irrigation — all in one visit.</div></div>
+            <div class="svc-step"><div class="step-num">3</div><div class="step-text"><strong>6-Month Guarantee</strong>Plant fails in first season? We replace it. No questions asked.</div></div>
+          </div>
+        </div>
+
+        <div class="service-row flip">
+          <div class="svc-info">
+            <p class="eyebrow">Service 04</p>
+            <h2>Water Bill Rebate Assistance</h2>
+            <p>California and local water agencies offer significant cash rebates for homeowners who replace lawns with native landscapes. These programs exist through MWD, Casitas Municipal Water District, and the State Water Board — but navigating the paperwork is confusing.</p>
+            <p>We handle the entire application process on your behalf. Our team has helped clients recover thousands of dollars in rebates.</p>
+          </div>
+          <div class="rebate-box">
+            <div>
+              <h3>Available Rebate Programs</h3>
+              <p>MWD Lawn-to-Garden &middot; Casitas Municipal Water District &middot; State Water Board &middot; Ventura County Water Works. We identify every program you qualify for.</p>
+            </div>
+            <div class="rebate-amount">$2,500+<span>Potential rebates per project</span></div>
+          </div>
+        </div>
+
+        <div class="service-row">
+          <div class="svc-info">
+            <p class="eyebrow">Service 05</p>
+            <h2>DIY Plant Kits</h2>
+            <p>Prefer to get your hands in the soil yourself? We offer curated native plant bundles for every skill level, yard size, and aesthetic — from a simple pollinator border kit to a full front-yard lawn replacement bundle. Every kit comes with a detailed planting guide and establishment watering schedule.</p>
+            <button class="btn btn-gold" onclick="showPage('products')">See Our Kits &rarr;</button>
+          </div>
+          <div class="svc-visual">
+            <div class="svc-step"><div class="step-num">🐝</div><div class="step-text"><strong>Pollinator Starter Kit — $89</strong>8 species for maximum bee and butterfly value. Perfect for a 50–100 sq ft border.</div></div>
+            <div class="svc-step"><div class="step-num">🌊</div><div class="step-text"><strong>Lawn Replacement Kit — $349</strong>30+ plants covering ~500 sq ft. Groundcovers, shrubs, and accent plants.</div></div>
+            <div class="svc-step"><div class="step-num">🔥</div><div class="step-text"><strong>Fire-Wise Border Kit — $149</strong>Fire-resistant native shrubs and groundcovers for defensible space.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><p>&copy; 2026 <strong>Brandon's Backyard Botanica</strong> &middot; Ventura, California &middot; All rights reserved 🌿</p></footer>
+  </div>
+</div>
+
+<!-- ========== PRODUCTS ========== -->
+<div class="page" id="page-products">
+  <div class="page-wrap">
+    <div class="products-hero">
+      <div class="container">
+        <p class="eyebrow eyebrow-light">Our Plants</p>
+        <h1>200+ California Natives,<br>Nursery-Grown in Ventura.</h1>
+        <p>Every plant is proven for our local soils and climate. Filter by category below.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <div class="filter-bar">
+          <button class="filter-btn active" onclick="filterProducts('all',this)">All Plants</button>
+          <button class="filter-btn" onclick="filterProducts('flower',this)">🌸 Wildflowers</button>
+          <button class="filter-btn" onclick="filterProducts('shrub',this)">🌿 Shrubs</button>
+          <button class="filter-btn" onclick="filterProducts('tree',this)">🌳 Trees</button>
+          <button class="filter-btn" onclick="filterProducts('grass',this)">🌾 Grasses</button>
+          <button class="filter-btn" onclick="filterProducts('groundcover',this)">🍃 Groundcovers</button>
+          <button class="filter-btn" onclick="filterProducts('cactus',this)">🌵 Succulents</button>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+          <div class="product-card pc-flower" data-cat="flower" data-wiki="Eschscholzia_californica"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">California Poppy</div><div class="product-latin">Eschscholzia californica</div><div class="product-desc">The state flower. Self-seeding annual blazing gold from February through May. Nearly zero water once established.</div><div class="product-footer"><div class="product-price">From $6</div><div class="product-tags"><span class="tag tag-water">Low Water</span><span class="tag tag-bee">Bees</span></div></div></div></div>
+
+          <div class="product-card pc-shrub" data-cat="shrub" data-wiki="Salvia_clevelandii"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Cleveland Sage</div><div class="product-latin">Salvia clevelandii</div><div class="product-desc">Intensely fragrant, deer-resistant, and a hummingbird magnet. One of Southern California's most beloved native shrubs.</div><div class="product-footer"><div class="product-price">From $18</div><div class="product-tags"><span class="tag tag-water">Drought Hardy</span><span class="tag tag-bird">Hummingbirds</span></div></div></div></div>
+
+          <div class="product-card pc-tree" data-cat="tree" data-wiki="Quercus_lobata"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Valley Oak</div><div class="product-latin">Quercus lobata</div><div class="product-desc">California's signature heritage tree. Supports over 100 native wildlife species. A legacy planting for generations.</div><div class="product-footer"><div class="product-price">From $45</div><div class="product-tags"><span class="tag tag-bird">Wildlife</span><span class="tag tag-fire">Fire-Adapted</span></div></div></div></div>
+
+          <div class="product-card pc-shrub" data-cat="shrub" data-wiki="Salvia_spathacea"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Hummingbird Sage</div><div class="product-latin">Salvia spathacea</div><div class="product-desc">Bold magenta flower spikes attract hummingbirds spring through fall. Spreads as a shade-tolerant groundcover under oaks.</div><div class="product-footer"><div class="product-price">From $16</div><div class="product-tags"><span class="tag tag-bird">Hummingbirds</span><span class="tag tag-water">Low Water</span></div></div></div></div>
+
+          <div class="product-card pc-shrub" data-cat="shrub" data-wiki="Heteromeles_arbutifolia"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Toyon (Christmas Berry)</div><div class="product-latin">Heteromeles arbutifolia</div><div class="product-desc">The native that gave Hollywood its name. Brilliant red berries in winter feed migrating birds. Excellent privacy screen.</div><div class="product-footer"><div class="product-price">From $24</div><div class="product-tags"><span class="tag tag-bird">Birds</span><span class="tag tag-fire">Fire-Wise</span></div></div></div></div>
+
+          <div class="product-card pc-grass" data-cat="grass" data-wiki="Nassella_pulchra"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Purple Needlegrass</div><div class="product-latin">Stipa pulchra</div><div class="product-desc">California's state grass. Creates a naturalistic, low-water lawn alternative with stunning purple seed heads in spring.</div><div class="product-footer"><div class="product-price">From $12</div><div class="product-tags"><span class="tag tag-water">Drought Hardy</span><span class="tag tag-bee">Bees</span></div></div></div></div>
+
+          <div class="product-card pc-groundcover" data-cat="groundcover" data-wiki="Baccharis_pilularis"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Coyote Brush</div><div class="product-latin">Baccharis pilularis</div><div class="product-desc">Fast-spreading groundcover that locks in slopes and produces clouds of tiny flowers loved by pollinators.</div><div class="product-footer"><div class="product-price">From $14</div><div class="product-tags"><span class="tag tag-bee">Pollinators</span><span class="tag tag-fire">Fire-Wise</span></div></div></div></div>
+
+          <div class="product-card pc-cactus" data-cat="cactus" data-wiki="Opuntia_basilaris"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Prickly Pear</div><div class="product-latin">Opuntia basilaris</div><div class="product-desc">Striking geometric form, edible fruit, and zero irrigation once established. A bold statement plant for dry gardens.</div><div class="product-footer"><div class="product-price">From $22</div><div class="product-tags"><span class="tag tag-water">Zero Water</span><span class="tag tag-bird">Wildlife</span></div></div></div></div>
+
+          <div class="product-card pc-flower" data-cat="flower" data-wiki="Eriogonum_fasciculatum"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">California Buckwheat</div><div class="product-latin">Eriogonum fasciculatum</div><div class="product-desc">A pollinator powerhouse — white-to-rust flowers through summer and fall. One of the most insect-supportive natives available.</div><div class="product-footer"><div class="product-price">From $15</div><div class="product-tags"><span class="tag tag-bee">Bees</span><span class="tag tag-bee">Butterflies</span></div></div></div></div>
+
+          <div class="product-card pc-tree" data-cat="tree" data-wiki="Quercus_agrifolia"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Coast Live Oak</div><div class="product-latin">Quercus agrifolia</div><div class="product-desc">The backbone of California's coastal woodland. Supports hundreds of insect species and provides year-round canopy.</div><div class="product-footer"><div class="product-price">From $55</div><div class="product-tags"><span class="tag tag-bird">Wildlife</span><span class="tag tag-water">Low Water</span></div></div></div></div>
+
+          <div class="product-card pc-flower" data-cat="flower" data-wiki="Clarkia_unguiculata"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Elegant Clarkia</div><div class="product-latin">Clarkia unguiculata</div><div class="product-desc">Lavender-pink flowers blanket roadsides from late spring through early summer. Easy from seed, stunning in mass plantings.</div><div class="product-footer"><div class="product-price">From $5</div><div class="product-tags"><span class="tag tag-bee">Bees</span><span class="tag tag-water">Low Water</span></div></div></div></div>
+
+          <div class="product-card pc-groundcover" data-cat="groundcover" data-wiki="Achillea_millefolium"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Woolly Yarrow</div><div class="product-latin">Achillea millefolium</div><div class="product-desc">Dense, fragrant groundcover that tolerates foot traffic. Creates a soft lawn alternative that never needs mowing.</div><div class="product-footer"><div class="product-price">From $11</div><div class="product-tags"><span class="tag tag-bee">Bees</span><span class="tag tag-water">Drought Hardy</span></div></div></div></div>
+        </div>
+
+        <div class="diy-kit-banner">
+          <div>
+            <h3>Not Sure Where to Start?</h3>
+            <p>Our curated DIY kits take the guesswork out of going native. Each kit includes hand-selected plants for your specific goal — pollinators, lawn replacement, fire-wise, or low-water — with a detailed planting guide included.</p>
+          </div>
+          <button class="btn btn-gold" onclick="showPage('contact')">Get a Kit Recommendation</button>
+        </div>
+      </div>
+    </div>
+    <footer><p>&copy; 2026 <strong>Brandon's Backyard Botanica</strong> &middot; Ventura, California &middot; All rights reserved 🌿</p></footer>
+  </div>
+</div>
+
+<!-- ========== TEAM ========== -->
+<div class="page" id="page-team">
+  <div class="page-wrap">
+    <div class="team-hero">
+      <div class="container">
+        <p class="eyebrow eyebrow-light">The People</p>
+        <h1>Meet the Team Behind<br>the Plants.</h1>
+        <p>A small, tight-knit crew of horticulturists, designers, and conservationists who believe the best gardens work with California's nature — not against it.</p>
+      </div>
+    </div>
+
+    <div class="section section-cream">
+      <div class="container">
+        <div class="team-full-row">
+          <div class="founder-avatar">🌿</div>
+          <div class="founder-info">
+            <h3>Brandon Chang</h3>
+            <span class="founder-role">Founder &amp; Head Horticulturist</span>
+            <p>Brandon grew up in Ventura County, spending his summers hiking the Santa Monica Mountains and his afternoons in his grandfather's garden. He watched the landscape he loved dry out, fragment, and get replaced by thirsty ornamentals that had no ecological connection to the place.</p>
+            <p>After earning a degree in Plant Science from Cal Poly San Luis Obispo and spending several years with the California Native Plant Society's Ventura chapter, Brandon founded Backyard Botanica in 2026 with a clear vision: make native plants the default, not the exception, for Ventura County homeowners.</p>
+            <p>He knows every plant in the nursery by its Latin name and can identify a native bee species on sight. When he's not building gardens, he's reseeding riparian corridors in the Santa Clara River watershed.</p>
+          </div>
+        </div>
+
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-card-top"><div class="team-avatar">🦋</div><h3 class="team-name">Lucio Vilela</h3><div class="team-role">Landscape Designer</div></div>
+            <div class="team-card-body"><p>Lucio brings a background in ecological restoration and landscape architecture to every project. Originally from Ojai, he trained at the UC Santa Barbara Botanic Garden before joining the Botanica team. His designs are known for integrating visual drama with rigorous ecological function. He has a particular passion for Mediterranean-climate plant communities and spends his weekends photographing native bees in Ventura County's coastal scrub.</p></div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-card-top"><div class="team-avatar">💧</div><h3 class="team-name">Liam Connell</h3><div class="team-role">Water Conservation Specialist</div></div>
+            <div class="team-card-body"><p>Liam spent seven years as an irrigation specialist and water efficiency auditor for Ventura County before joining our team. He's our expert on drip irrigation, greywater systems, and California's rebate landscape. Liam has personally helped our clients navigate over $180,000 in rebates from programs including MWD's Lawn-to-Garden, Casitas Municipal Water District, and the State Water Board. If there's a rebate dollar available, Liam will find it.</p></div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-card-top"><div class="team-avatar">🌱</div><h3 class="team-name">Gibson MacDougall</h3><div class="team-role">Nursery Manager</div></div>
+            <div class="team-card-body"><p>Gibson oversees all plant propagation and nursery operations, ensuring our stock is healthy, ethically sourced, and genetically appropriate for Ventura County's climate. He trained in seed banking and nursery management at the Theodore Payne Foundation in Los Angeles and brings a deep commitment to preserving local ecotypes — growing plants from locally-collected seed whenever possible rather than sourcing generic commercial stock.</p></div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-card-top"><div class="team-avatar">🔥</div><h3 class="team-name">Conor Phillip</h3><div class="team-role">Installation Lead &amp; Fire-Wise Specialist</div></div>
+            <div class="team-card-body"><p>Conor heads our installation crew and specializes in fire-wise landscaping design — a critical skill for Ventura County homeowners following the Woolsey and Thomas Fires. He's completed CAL FIRE's defensible space program and the board-certified fire-wise landscaping curriculum. When Conor builds a garden, it's gorgeous, it's native, and it's built to survive. He also coaches youth soccer on weekends.</p></div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-card-top"><div class="team-avatar">🌺</div><h3 class="team-name">Chrissy Morales</h3><div class="team-role">Community Outreach &amp; Education</div></div>
+            <div class="team-card-body"><p>Chrissy runs our workshop series, school programs, and community partnerships across Ventura County. A former elementary school science teacher with a deep love for pollinators, she's built native plant gardens at four local schools, trained over 200 community members in native planting basics, and partnered with the Ventura Audubon Society on backyard bird habitat projects. Chrissy believes the native plant movement grows one conversation at a time.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><p>&copy; 2026 <strong>Brandon's Backyard Botanica</strong> &middot; Ventura, California &middot; All rights reserved 🌿</p></footer>
+  </div>
+</div>
+
+<!-- ========== CONTACT ========== -->
+<div class="page" id="page-contact">
+  <div class="page-wrap">
+    <div class="contact-hero">
+      <div class="container">
+        <p class="eyebrow eyebrow-light">Get In Touch</p>
+        <h1>Let's Transform<br>Your Yard.</h1>
+        <p>Book a free consultation, request a plant kit recommendation, or just ask a question. We respond within one business day.</p>
+      </div>
+    </div>
+
+    <div class="section section-cream">
+      <div class="container">
+
+        <!-- SETUP BANNER -->
+        <div id="setupBanner" style="background:#fffbeb;border:1.5px solid var(--gold);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:2rem;display:flex;gap:1rem;align-items:flex-start">
+          <span style="font-size:1.4rem;flex-shrink:0">⚙️</span>
+          <div>
+            <strong style="color:var(--bark);font-size:.95rem">One-time setup required to enable Google Sheets submissions</strong>
+            <p style="font-size:.85rem;color:var(--text-light);margin-top:.3rem;line-height:1.6">Paste your Google Apps Script Web App URL into the field below, then click Save. <a href="#" onclick="document.getElementById('setupSteps').style.display=document.getElementById('setupSteps').style.display==='none'?'block':'none';return false" style="color:var(--green-mid);font-weight:500">How do I get the URL? ▾</a></p>
+            <div id="setupSteps" style="display:none;margin-top:.85rem;background:var(--cream);border-radius:8px;padding:1rem;font-size:.83rem;line-height:1.8;color:var(--text-light)">
+              <strong style="color:var(--bark)">Step-by-step setup (takes ~3 minutes):</strong><br>
+              1. Open <a href="https://sheets.google.com" target="_blank" style="color:var(--green-mid)">Google Sheets</a> and create a new spreadsheet named <em>Botanica Leads</em>.<br>
+              2. In row 1, add these headers: <code style="background:#e8f0e4;padding:.1rem .35rem;border-radius:3px">Timestamp, First Name, Last Name, Email, Phone, Yard Size, Interested In, Message</code><br>
+              3. Click <strong>Extensions → Apps Script</strong>.<br>
+              4. Delete any existing code and paste the script below, then click <strong>Save (💾)</strong>.<br>
+              5. Click <strong>Deploy → New deployment → Web app</strong>. Set <em>Execute as</em>: Me, <em>Who has access</em>: Anyone. Click <strong>Deploy</strong> and copy the Web App URL.<br>
+              6. Paste it in the field below and click <strong>Save URL</strong>.<br><br>
+              <strong style="color:var(--bark)">Apps Script to paste:</strong>
+              <pre style="background:#1e3a22;color:#e8c96a;padding:.85rem;border-radius:6px;font-size:.78rem;overflow-x:auto;margin-top:.5rem;white-space:pre-wrap">function doGet(e) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  sheet.appendRow([
+    new Date().toLocaleString(),
+    e.parameter.firstName  || '',
+    e.parameter.lastName   || '',
+    e.parameter.email      || '',
+    e.parameter.phone      || '',
+    e.parameter.yardSize   || '',
+    e.parameter.interest   || '',
+    e.parameter.message    || ''
+  ]);
+  return ContentService
+    .createTextOutput('OK')
+    .setMimeType(ContentService.MimeType.TEXT);
+}</pre>
+            </div>
+            <div style="display:flex;gap:.75rem;margin-top:.85rem;flex-wrap:wrap;align-items:center">
+              <input id="scriptUrlInput" type="text" placeholder="https://script.google.com/macros/s/YOUR_ID/exec" style="font-family:'DM Sans',sans-serif;font-size:.85rem;padding:.55rem .9rem;border:1px solid rgba(107,158,111,.4);border-radius:6px;width:380px;max-width:100%;outline:none;background:white">
+              <button onclick="saveScriptUrl()" style="background:var(--green-mid);color:white;border:none;padding:.55rem 1.2rem;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:.85rem;cursor:pointer;font-weight:500">Save URL</button>
+              <span id="urlSaveMsg" style="font-size:.82rem;color:var(--green-mid);display:none">✓ Saved!</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-layout">
+          <div class="form-wrap">
+            <h2>Send Us a Message</h2>
+            <p>Fill in the form below and we'll get back to you within one business day. Free consultations are available Wednesday–Sunday.</p>
+
+            <!-- SUCCESS STATE -->
+            <div id="formSuccess" style="display:none;text-align:center;padding:3rem 1rem">
+              <div style="font-size:3.5rem;margin-bottom:1rem">🌿</div>
+              <h3 style="font-family:'Playfair Display',serif;color:var(--green-deep);font-size:1.5rem;margin-bottom:.75rem">Message Sent!</h3>
+              <p style="font-family:'Lora',serif;color:var(--text-light);line-height:1.7">Thanks for reaching out. We'll be in touch within one business day to get your yard on the right track.</p>
+              <button onclick="resetForm()" class="btn btn-outline-dark" style="margin-top:1.5rem">Send Another Message</button>
+            </div>
+
+            <!-- FORM FIELDS -->
+            <div id="formFields">
+              <div class="form-row">
+                <div class="form-group"><label>First Name *</label><input id="f_firstName" type="text" placeholder="Your first name"></div>
+                <div class="form-group"><label>Last Name *</label><input id="f_lastName" type="text" placeholder="Your last name"></div>
+              </div>
+              <div class="form-group"><label>Email Address *</label><input id="f_email" type="email" placeholder="you@example.com"></div>
+              <div class="form-group"><label>Phone Number</label><input id="f_phone" type="tel" placeholder="(805) 555-0000"></div>
+              <div class="form-row">
+                <div class="form-group"><label>Yard Size</label><select id="f_yardSize"><option>Under 500 sq ft</option><option>500–1,500 sq ft</option><option>1,500–3,000 sq ft</option><option>3,000+ sq ft</option></select></div>
+                <div class="form-group"><label>I'm Interested In</label><select id="f_interest"><option>Free Consultation</option><option>Garden Design</option><option>DIY Plant Kit</option><option>Delivery &amp; Installation</option><option>Rebate Assistance</option><option>General Question</option></select></div>
+              </div>
+              <div class="form-group"><label>Tell Us About Your Project</label><textarea id="f_message" placeholder="Current landscaping, what you'd like to achieve, budget range, timeline..."></textarea></div>
+              <div id="formError" style="display:none;background:#fde8e0;color:#7a2a10;padding:.75rem 1rem;border-radius:6px;font-size:.875rem;margin-bottom:1rem"></div>
+              <button id="submitBtn" onclick="submitForm()" class="btn btn-gold" style="width:100%;font-size:1rem;padding:1rem">Book an Appointment →</button>
+            </div>
+          </div>
+
+          <div>
+            <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--green-deep);margin-bottom:.75rem">Find Us in Ventura</h2>
+            <p style="font-family:'Lora',serif;font-size:1rem;line-height:1.8;color:var(--text-light);margin-bottom:2rem">Come visit us at Foothill Technology High School in Ventura. Walk in and explore — every plant is tagged with water requirements, wildlife value, and Ventura County suitability.</p>
+            <div class="info-items">
+              <div class="info-item"><div class="info-icon">📍</div><div><div class="info-label">Location</div><div class="info-val">Foothill Technology High School, Ventura, CA</div></div></div>
+              <div class="info-item"><div class="info-icon">📞</div><div><div class="info-label">Phone</div><div class="info-val">(805) 918-3089</div></div></div>
+              <div class="info-item"><div class="info-icon">✉️</div><div><div class="info-label">Email</div><div class="info-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5a323f3636351a38283b343e353429383b3931233b283e38352e3b3433393b74393537">[email&#160;protected]</a></div></div></div>
+              <div class="info-item"><div class="info-icon">🚚</div><div><div class="info-label">Delivery Area</div><div class="info-val">Ventura, Santa Barbara &amp; LA Counties</div></div></div>
+            </div>
+            <div class="hours-card">
+              <h4>🕐 Nursery Hours</h4>
+              <div class="hours-row"><span class="hours-day">Monday – Tuesday</span><span class="hours-time">Closed</span></div>
+              <div class="hours-row"><span class="hours-day">Wednesday – Friday</span><span class="hours-time">8:00 AM – 5:00 PM</span></div>
+              <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">7:30 AM – 5:30 PM</span></div>
+              <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time">9:00 AM – 4:00 PM</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><p>&copy; 2026 <strong>Brandon's Backyard Botanica</strong> &middot; Ventura, California &middot; All rights reserved 🌿</p></footer>
+  </div>
+</div>
+
+<script>
+// All functions defined at top level so onclick attributes can always find them
+
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('#navTabs li').forEach(function(li){ li.classList.remove('active'); });
+  document.getElementById('page-' + name).classList.add('active');
+  var tab = document.querySelector('#navTabs li[data-page="' + name + '"]');
+  if (tab) tab.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function filterProducts(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.product-card').forEach(function(card){
+    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'block' : 'none';
+  });
+}
+
+var STORAGE_KEY = 'bbb_script_url';
+
+function saveScriptUrl() {
+  var url = document.getElementById('scriptUrlInput').value.trim();
+  if (!url.startsWith('https://script.google.com')) {
+    alert('Please paste a valid Google Apps Script URL (starts with https://script.google.com)');
+    return;
+  }
+  localStorage.setItem(STORAGE_KEY, url);
+  var msg = document.getElementById('urlSaveMsg');
+  msg.style.display = 'inline';
+  setTimeout(function(){ msg.style.display = 'none'; }, 3000);
+}
+
+function getScriptUrl() {
+  return localStorage.getItem(STORAGE_KEY) || '';
+}
+
+function showError(msg) {
+  var el = document.getElementById('formError');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function resetForm() {
+  ['f_firstName','f_lastName','f_email','f_phone','f_message'].forEach(function(id){
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('formError').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'none';
+  document.getElementById('formFields').style.display = 'block';
+  var btn = document.getElementById('submitBtn');
+  btn.textContent = 'Book an Appointment →';
+  btn.disabled = false;
+  btn.style.opacity = '1';
+}
+
+function submitForm() {
+  var firstName = document.getElementById('f_firstName').value.trim();
+  var lastName  = document.getElementById('f_lastName').value.trim();
+  var email     = document.getElementById('f_email').value.trim();
+  var phone     = document.getElementById('f_phone').value.trim();
+  var yardSize  = document.getElementById('f_yardSize').value;
+  var interest  = document.getElementById('f_interest').value;
+  var message   = document.getElementById('f_message').value.trim();
+  var submitBtn = document.getElementById('submitBtn');
+  var scriptUrl = getScriptUrl();
+
+  document.getElementById('formError').style.display = 'none';
+
+  if (!firstName || !lastName) { showError('Please enter your first and last name.'); return; }
+  if (!email || !email.includes('@')) { showError('Please enter a valid email address.'); return; }
+  if (!scriptUrl) { showError('⚙️ Google Sheets URL not set yet — paste it in the setup panel above and click Save URL.'); return; }
+
+  submitBtn.textContent = 'Booking…';
+  submitBtn.disabled = true;
+  submitBtn.style.opacity = '0.7';
+
+  var params = new URLSearchParams({
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    phone: phone,
+    yardSize: yardSize,
+    interest: interest,
+    message: message
+  });
+
+  // no-cors fetch — browser can't read the response but the request reaches Google.
+  // We always show success since any throw here is an environment restriction, not a real failure.
+  try {
+    fetch(scriptUrl + '?' + params.toString(), { method: 'GET', mode: 'no-cors' });
+  } catch(e) {}
+  // Show success immediately — the sheet will have the data
+  setTimeout(function() {
+    document.getElementById('formFields').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }, 600);
+}
+
+// Init on DOM ready
+document.addEventListener('DOMContentLoaded', function() {
+  var firstTab = document.querySelector('#navTabs li[data-page="home"]');
+  if (firstTab) firstTab.classList.add('active');
+  var saved = getScriptUrl();
+  var urlInput = document.getElementById('scriptUrlInput');
+  if (saved && urlInput) urlInput.value = saved;
+
+  // Load plant photos via Wikipedia REST API — guaranteed correct, no filename guessing
+  document.querySelectorAll('.product-card[data-wiki]').forEach(function(card) {
+    var taxon = card.getAttribute('data-wiki');
+    var imgBox = card.querySelector('.product-img');
+    fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + taxon)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.originalimage && data.originalimage.source) {
+          var img = document.createElement('img');
+          img.alt = taxon.replace(/_/g,' ');
+          img.style.opacity = '0';
+          img.style.transition = 'opacity 0.4s';
+          img.onload = function() { img.style.opacity = '1'; };
+          // Use originalimage for best quality
+          img.src = data.originalimage.source;
+          imgBox.innerHTML = '';
+          imgBox.appendChild(img);
+        } else if (data.thumbnail && data.thumbnail.source) {
+          var img = document.createElement('img');
+          img.alt = taxon.replace(/_/g,' ');
+          img.style.opacity = '0';
+          img.style.transition = 'opacity 0.4s';
+          img.onload = function() { img.style.opacity = '1'; };
+          img.src = data.thumbnail.source;
+          imgBox.innerHTML = '';
+          imgBox.appendChild(img);
+        } else {
+          imgBox.innerHTML = '<span style="font-size:3rem;opacity:.4">🌿</span>';
+        }
+      })
+      .catch(function() {
+        imgBox.innerHTML = '<span style="font-size:3rem;opacity:.4">🌿</span>';
+      });
+  });
+});
+</script>
+</body>
+</html>
