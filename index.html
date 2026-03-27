@@ -272,6 +272,39 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;background:var(-
   .scp-items{max-height:40vh}
 }
 
+/* CHECKOUT MODAL */
+.co-progress{display:flex;align-items:center;padding:.85rem 2rem;background:var(--cream);border-bottom:1px solid var(--mist);gap:.25rem}
+.co-step{font-size:.75rem;font-weight:500;color:var(--text-light);letter-spacing:.04em;white-space:nowrap;padding:.25rem .5rem;border-radius:4px;transition:all .2s}
+.co-step.co-active{color:var(--green-deep);font-weight:700}
+.co-step.co-done{color:var(--green-mid);font-weight:600}
+.co-divider{flex:1;height:1px;background:var(--mist);margin:0 .25rem}
+.co-divider.co-done{background:var(--green-mid)}
+.co-field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.9rem;flex:1}
+.co-field label{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--earth);font-weight:500}
+.co-field input{background:var(--warm);border:1px solid rgba(107,158,111,.3);border-radius:6px;padding:.7rem .9rem;font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--text);outline:none;transition:border-color .2s}
+.co-field input:focus{border-color:var(--green-light)}
+.co-row{display:flex;gap:.75rem}
+.co-card-input-wrap{position:relative}
+.co-card-input-wrap input{width:100%;padding-right:2.5rem}
+.co-card-icon{position:absolute;right:.75rem;top:50%;transform:translateY(-50%);font-size:1.1rem;pointer-events:none}
+.co-radio-opt{display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;border:1.5px solid rgba(107,158,111,.2);border-radius:8px;margin-bottom:.6rem;cursor:pointer;transition:all .2s;background:var(--warm)}
+.co-radio-opt:hover{border-color:var(--green-mid);background:var(--cream)}
+.co-radio-opt.selected{border-color:var(--green-mid);background:#eaf3e8}
+.co-radio-dot{width:18px;height:18px;border-radius:50%;border:2px solid rgba(107,158,111,.4);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.co-radio-opt.selected .co-radio-dot{border-color:var(--green-mid);background:var(--green-mid)}
+.co-radio-opt.selected .co-radio-dot::after{content:'';width:6px;height:6px;background:white;border-radius:50%}
+.co-radio-info{flex:1;display:flex;flex-direction:column;gap:.15rem}
+.co-radio-info span:first-child{font-size:.9rem;font-weight:500;color:var(--text)}
+.co-radio-sub{font-size:.75rem;color:var(--text-light)}
+.co-radio-price{font-size:.9rem;font-weight:600;color:var(--green-deep);white-space:nowrap}
+.co-order-summary{background:var(--cream);border-radius:8px;padding:1rem;margin-top:1rem;border:1px solid rgba(107,158,111,.15)}
+.co-order-summary-item{display:flex;justify-content:space-between;font-size:.85rem;padding:.3rem 0;color:var(--text-light);border-bottom:1px solid rgba(107,158,111,.1)}
+.co-order-summary-item:last-child{border-bottom:none;color:var(--text);font-weight:600;padding-top:.5rem;margin-top:.1rem}
+.co-order-total{background:var(--green-deep);border-radius:8px;padding:1rem 1.1rem;margin-top:.75rem}
+.co-order-total-row{display:flex;justify-content:space-between;font-size:.85rem;padding:.25rem 0;color:rgba(244,239,230,.7)}
+.co-order-total-row.final{color:var(--gold);font-weight:700;font-size:1rem;padding-top:.5rem;margin-top:.25rem;border-top:1px solid rgba(244,239,230,.15)}
+.cc-badge{background:var(--mist);color:var(--green-deep);padding:.2rem .55rem;border-radius:4px;font-size:.7rem;font-weight:700;letter-spacing:.08em}
+
 /* FOOTER */
 footer{background:var(--bark);padding:2.5rem 0;text-align:center}
 footer p{font-size:.85rem;color:rgba(244,239,230,.4)}
@@ -408,8 +441,8 @@ footer strong{color:var(--gold)}
       <span class="cart-total-label">Total</span>
       <span class="cart-total-price" id="cartTotal">$0.00</span>
     </div>
-    <button class="btn btn-gold" style="width:100%;font-size:1rem;padding:.9rem" onclick="checkout()">Request Order →</button>
-    <p style="font-size:.75rem;color:var(--text-light);text-align:center;margin-top:.75rem;line-height:1.5">We'll follow up by email to confirm your order and arrange pickup or delivery.</p>
+    <button class="btn btn-gold" style="width:100%;font-size:1rem;padding:.9rem" onclick="openCheckout()">Checkout →</button>
+    <p style="font-size:.75rem;color:var(--text-light);text-align:center;margin-top:.75rem;line-height:1.5">Secure checkout · Free local pickup available</p>
   </div>
 </div>
 
@@ -1010,9 +1043,8 @@ footer strong{color:var(--gold)}
                 <span class="scp-total-label">Subtotal</span>
                 <span class="scp-total-price" id="scpTotal">$0.00</span>
               </div>
-              <button class="btn btn-gold" style="width:100%;padding:.85rem;font-size:.95rem;margin-top:1rem" onclick="checkout()">Request Order →</button>
+              <button class="btn btn-gold" style="width:100%;padding:.85rem;font-size:.95rem;margin-top:1rem" onclick="openCheckout()">Checkout →</button>
               <button onclick="clearCart()" style="width:100%;background:none;border:none;color:var(--text-light);font-size:.8rem;cursor:pointer;margin-top:.65rem;text-decoration:underline;font-family:'DM Sans',sans-serif">Clear cart</button>
-              <p style="font-size:.72rem;color:var(--text-light);text-align:center;margin-top:.75rem;line-height:1.5">We'll follow up to confirm your order and arrange pickup or delivery.</p>
             </div>
           </div><!-- end shop-cart-panel -->
 
@@ -1023,6 +1055,155 @@ footer strong{color:var(--gold)}
     <footer><p>&copy; 2026 <strong>Brandon's Backyard Botanica</strong> &middot; Ventura, California &middot; All rights reserved 🌿</p></footer>
   </div>
 </div>
+
+<!-- ========== CHECKOUT MODAL ========== -->
+<div class="modal-overlay" id="checkoutOverlay" onclick="closeCheckoutModal(event)" style="align-items:flex-start;padding:2rem 1.5rem;overflow-y:auto">
+  <div class="modal" id="checkoutModal" style="max-width:520px;margin:auto">
+
+    <!-- Step 1: Contact -->
+    <div id="co-step1">
+      <div style="background:var(--green-deep);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between">
+        <h2 style="font-family:'Playfair Display',serif;color:var(--cream);font-size:1.3rem">Checkout</h2>
+        <button onclick="closeCheckoutDirect()" style="background:none;border:none;color:rgba(244,239,230,.6);cursor:pointer;font-size:1.3rem">✕</button>
+      </div>
+      <!-- Progress -->
+      <div class="co-progress">
+        <div class="co-step co-active">1 Contact</div>
+        <div class="co-divider"></div>
+        <div class="co-step">2 Shipping</div>
+        <div class="co-divider"></div>
+        <div class="co-step">3 Payment</div>
+      </div>
+      <div style="padding:1.75rem 2rem">
+        <p style="font-size:.82rem;color:var(--text-light);font-family:'Lora',serif;margin-bottom:1.5rem">Enter your contact details to get started.</p>
+        <div class="co-row">
+          <div class="co-field"><label>First Name</label><input type="text" id="co-fname" placeholder="Brandon"></div>
+          <div class="co-field"><label>Last Name</label><input type="text" id="co-lname" placeholder="Chang"></div>
+        </div>
+        <div class="co-field"><label>Email Address</label><input type="email" id="co-email" placeholder="brandon@botanica.com"></div>
+        <div class="co-field"><label>Phone Number</label><input type="tel" id="co-phone" placeholder="(805) 918-3089"></div>
+        <div class="co-order-summary" id="co-summary1"></div>
+        <button class="btn btn-gold" style="width:100%;padding:.9rem;font-size:.95rem;margin-top:1.25rem" onclick="coNext(1)">Continue to Shipping →</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Shipping -->
+    <div id="co-step2" style="display:none">
+      <div style="background:var(--green-deep);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between">
+        <h2 style="font-family:'Playfair Display',serif;color:var(--cream);font-size:1.3rem">Shipping</h2>
+        <button onclick="closeCheckoutDirect()" style="background:none;border:none;color:rgba(244,239,230,.6);cursor:pointer;font-size:1.3rem">✕</button>
+      </div>
+      <div class="co-progress">
+        <div class="co-step co-done">✓ Contact</div>
+        <div class="co-divider co-done"></div>
+        <div class="co-step co-active">2 Shipping</div>
+        <div class="co-divider"></div>
+        <div class="co-step">3 Payment</div>
+      </div>
+      <div style="padding:1.75rem 2rem">
+        <p style="font-size:.82rem;color:var(--text-light);font-family:'Lora',serif;margin-bottom:1.5rem">Where should we send your order?</p>
+        <div class="co-field"><label>Street Address</label><input type="text" id="co-addr" placeholder="123 Harbor Blvd"></div>
+        <div class="co-field"><label>Apt / Suite (optional)</label><input type="text" id="co-addr2" placeholder="Apt 4B"></div>
+        <div class="co-row">
+          <div class="co-field" style="flex:2"><label>City</label><input type="text" id="co-city" placeholder="Ventura"></div>
+          <div class="co-field" style="flex:1"><label>State</label><input type="text" id="co-state" placeholder="CA" maxlength="2"></div>
+          <div class="co-field" style="flex:1"><label>ZIP</label><input type="text" id="co-zip" placeholder="93001" maxlength="5"></div>
+        </div>
+        <!-- Shipping options -->
+        <p style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--earth);margin:.75rem 0 .5rem;font-weight:500">Shipping Method</p>
+        <label class="co-radio-opt" onclick="selectShipping(this,'5.99')">
+          <div class="co-radio-dot"></div>
+          <div class="co-radio-info"><span>Standard Shipping</span><span class="co-radio-sub">5–7 business days</span></div>
+          <span class="co-radio-price">$5.99</span>
+        </label>
+        <label class="co-radio-opt" onclick="selectShipping(this,'12.99')">
+          <div class="co-radio-dot"></div>
+          <div class="co-radio-info"><span>Express Shipping</span><span class="co-radio-sub">2–3 business days</span></div>
+          <span class="co-radio-price">$12.99</span>
+        </label>
+        <label class="co-radio-opt" onclick="selectShipping(this,'0')">
+          <div class="co-radio-dot"></div>
+          <div class="co-radio-info"><span>Local Pickup</span><span class="co-radio-sub">Foothill Tech High School, Ventura</span></div>
+          <span class="co-radio-price" style="color:var(--green-mid);font-weight:600">Free</span>
+        </label>
+        <div style="display:flex;gap:.75rem;margin-top:1.25rem">
+          <button class="btn btn-outline-dark" style="flex:1;padding:.9rem;font-size:.9rem" onclick="coBack(2)">← Back</button>
+          <button class="btn btn-gold" style="flex:2;padding:.9rem;font-size:.95rem" onclick="coNext(2)">Continue to Payment →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Payment -->
+    <div id="co-step3" style="display:none">
+      <div style="background:var(--green-deep);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between">
+        <h2 style="font-family:'Playfair Display',serif;color:var(--cream);font-size:1.3rem">Payment</h2>
+        <button onclick="closeCheckoutDirect()" style="background:none;border:none;color:rgba(244,239,230,.6);cursor:pointer;font-size:1.3rem">✕</button>
+      </div>
+      <div class="co-progress">
+        <div class="co-step co-done">✓ Contact</div>
+        <div class="co-divider co-done"></div>
+        <div class="co-step co-done">✓ Shipping</div>
+        <div class="co-divider co-done"></div>
+        <div class="co-step co-active">3 Payment</div>
+      </div>
+      <div style="padding:1.75rem 2rem">
+        <div style="display:flex;gap:.5rem;margin-bottom:1.25rem">
+          <span class="cc-badge">VISA</span>
+          <span class="cc-badge">MC</span>
+          <span class="cc-badge">AMEX</span>
+          <span class="cc-badge">DISC</span>
+        </div>
+        <div class="co-field">
+          <label>Name on Card</label>
+          <input type="text" id="co-cardname" placeholder="Brandon Chang">
+        </div>
+        <div class="co-field">
+          <label>Card Number</label>
+          <div class="co-card-input-wrap">
+            <input type="text" id="co-cardnum" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCardNum(this)">
+            <span class="co-card-icon" id="co-card-brand">💳</span>
+          </div>
+        </div>
+        <div class="co-row">
+          <div class="co-field">
+            <label>Expiry Date</label>
+            <input type="text" id="co-expiry" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)">
+          </div>
+          <div class="co-field">
+            <label>CVV</label>
+            <input type="text" id="co-cvv" placeholder="•••" maxlength="4" style="letter-spacing:.2em">
+          </div>
+          <div class="co-field">
+            <label>ZIP</label>
+            <input type="text" id="co-billzip" placeholder="93001" maxlength="5">
+          </div>
+        </div>
+        <!-- Order total -->
+        <div class="co-order-total" id="co-total-display"></div>
+        <div style="display:flex;gap:.5rem;align-items:center;margin:.75rem 0;font-size:.78rem;color:var(--text-light)">
+          🔒 <span>Your payment info is encrypted and secure.</span>
+        </div>
+        <div style="display:flex;gap:.75rem;margin-top:.5rem">
+          <button class="btn btn-outline-dark" style="flex:1;padding:.9rem;font-size:.9rem" onclick="coBack(3)">← Back</button>
+          <button class="btn btn-gold" style="flex:2;padding:.9rem;font-size:.95rem" onclick="coPlace()">Place Order 🌿</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Confirmation -->
+    <div id="co-step4" style="display:none">
+      <div style="padding:3rem 2rem;text-align:center">
+        <div style="font-size:3.5rem;margin-bottom:1rem">🌿</div>
+        <h2 style="font-family:'Playfair Display',serif;color:var(--green-deep);font-size:1.6rem;margin-bottom:.75rem">Order Placed!</h2>
+        <p style="font-family:'Lora',serif;color:var(--text-light);line-height:1.75;margin-bottom:.5rem">Thank you for your order. You'll receive a confirmation email shortly.</p>
+        <p style="font-size:.82rem;color:var(--text-light);font-family:'Lora',serif;margin-bottom:2rem">Order #BBB-<span id="co-order-num"></span></p>
+        <button class="btn btn-gold" onclick="closeCheckoutDirect()">Back to Shop</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
 <!-- ========== TEAM ========== -->
 <div class="page" id="page-team">
@@ -1516,20 +1697,111 @@ function closeCart() {
   document.body.style.overflow = '';
 }
 
-function checkout() {
+var selectedShipping = { label: 'Standard Shipping', price: 5.99 };
+
+function openCheckout() {
   if (cart.length === 0) return;
-  // Build order summary and send to contact page
-  var summary = cart.map(function(i){ return i.name + ' x' + i.qty; }).join(', ');
   closeCart();
-  showPage('contact');
-  // Pre-fill the message field
-  setTimeout(function() {
-    var msgField = document.getElementById('f_message');
-    if (msgField) msgField.value = 'I\'d like to order: ' + summary + '. Please confirm availability and arrange pickup or delivery.';
-    var interestField = document.getElementById('f_interest');
-    if (interestField) interestField.value = 'Delivery & Installation';
-  }, 300);
+  // Reset to step 1
+  ['co-step1','co-step2','co-step3','co-step4'].forEach(function(id){
+    document.getElementById(id).style.display = id === 'co-step1' ? 'block' : 'none';
+  });
+  selectedShipping = { label: 'Standard Shipping', price: 5.99 };
+  // Pre-select first shipping option
+  var opts = document.querySelectorAll('.co-radio-opt');
+  opts.forEach(function(o){ o.classList.remove('selected'); });
+  if (opts[0]) opts[0].classList.add('selected');
+  renderCheckoutSummary();
+  document.getElementById('checkoutOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
+
+function closeCheckoutModal(e) {
+  if (e.target === document.getElementById('checkoutOverlay')) closeCheckoutDirect();
+}
+
+function closeCheckoutDirect() {
+  document.getElementById('checkoutOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function renderCheckoutSummary() {
+  var el = document.getElementById('co-summary1');
+  if (!el) return;
+  var html = '<div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--earth);font-weight:500;margin-bottom:.5rem">Order Summary</div>';
+  cart.forEach(function(item) {
+    html += '<div class="co-order-summary-item"><span>' + item.name + ' × ' + item.qty + '</span><span>$' + (item.price * item.qty).toFixed(2) + '</span></div>';
+  });
+  var sub = cart.reduce(function(s,i){ return s + i.price * i.qty; }, 0);
+  html += '<div class="co-order-summary-item"><span>Total</span><span>$' + sub.toFixed(2) + '</span></div>';
+  el.innerHTML = html;
+}
+
+function renderCheckoutTotal() {
+  var el = document.getElementById('co-total-display');
+  if (!el) return;
+  var sub = cart.reduce(function(s,i){ return s + i.price * i.qty; }, 0);
+  var ship = selectedShipping.price;
+  var tax = sub * 0.0725;
+  var total = sub + ship + tax;
+  el.innerHTML =
+    '<div class="co-order-total-row"><span>Subtotal</span><span>$' + sub.toFixed(2) + '</span></div>' +
+    '<div class="co-order-total-row"><span>Shipping (' + selectedShipping.label + ')</span><span>' + (ship === 0 ? 'Free' : '$' + ship.toFixed(2)) + '</span></div>' +
+    '<div class="co-order-total-row"><span>Tax (7.25%)</span><span>$' + tax.toFixed(2) + '</span></div>' +
+    '<div class="co-order-total-row final"><span>Total</span><span>$' + total.toFixed(2) + '</span></div>';
+}
+
+function selectShipping(el, price) {
+  document.querySelectorAll('.co-radio-opt').forEach(function(o){ o.classList.remove('selected'); });
+  el.classList.add('selected');
+  var labels = { '5.99': 'Standard Shipping', '12.99': 'Express Shipping', '0': 'Local Pickup' };
+  selectedShipping = { label: labels[price] || 'Shipping', price: parseFloat(price) };
+}
+
+function coNext(step) {
+  document.getElementById('co-step' + step).style.display = 'none';
+  var next = step + 1;
+  document.getElementById('co-step' + next).style.display = 'block';
+  if (next === 3) renderCheckoutTotal();
+  // Scroll modal to top
+  document.getElementById('checkoutModal').scrollTop = 0;
+}
+
+function coBack(step) {
+  document.getElementById('co-step' + step).style.display = 'none';
+  document.getElementById('co-step' + (step - 1)).style.display = 'block';
+}
+
+function formatCardNum(input) {
+  var v = input.value.replace(/\D/g,'').substring(0,16);
+  input.value = v.replace(/(.{4})/g,'$1 ').trim();
+  var brand = '💳';
+  if (v.startsWith('4')) brand = '💙';
+  else if (v.startsWith('5')) brand = '🟠';
+  else if (v.startsWith('3')) brand = '🟢';
+  else if (v.startsWith('6')) brand = '🔴';
+  document.getElementById('co-card-brand').textContent = brand;
+}
+
+function formatExpiry(input) {
+  var v = input.value.replace(/\D/g,'').substring(0,4);
+  if (v.length >= 3) v = v.substring(0,2) + ' / ' + v.substring(2);
+  input.value = v;
+}
+
+function coPlace() {
+  // Just show confirmation — no real processing
+  document.getElementById('co-step3').style.display = 'none';
+  document.getElementById('co-step4').style.display = 'block';
+  document.getElementById('co-order-num').textContent = Math.floor(100000 + Math.random() * 900000);
+  cart = [];
+  renderCart();
+}
+
+function checkout() {
+  openCheckout();
+}
+
 
 function showToast(msg) {
   var t = document.getElementById('toast');
