@@ -153,11 +153,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;background:var(-
 .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
 .product-card{background:var(--cream);border-radius:12px;overflow:hidden;border:1px solid rgba(107,158,111,.15);transition:all .25s;cursor:pointer}
 .product-card:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(30,58,34,.12)}
-.product-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:4rem;overflow:hidden;position:relative}
+.product-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:4rem;overflow:hidden;position:relative;background:var(--mist)}
 .product-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .35s}
 .product-card:hover .product-img img{transform:scale(1.06)}
+.product-img-wrap{height:160px;display:flex;align-items:center;justify-content:center;font-size:4rem;overflow:hidden}
 .img-loading{font-size:2rem;opacity:.3;animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:.6}}
+.cat-section[style*="display:none"]{display:none!important}
+.cat-header{display:flex;align-items:flex-start;gap:1.25rem;margin-bottom:2rem;padding-bottom:1.25rem;border-bottom:2px solid var(--mist)}
+.cat-icon{font-size:2.2rem;flex-shrink:0;margin-top:.1rem}
+.cat-title{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--green-deep);margin-bottom:.3rem}
+.cat-desc{font-family:'Lora',serif;font-size:.95rem;color:var(--text-light);line-height:1.65}
 .pc-groundcover .product-img{background:#d4e8cf}
 .pc-shrub .product-img{background:#c8ddc2}
 .pc-tree .product-img{background:#b8d4b0}
@@ -230,6 +236,42 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;background:var(-
 .hours-day{color:rgba(244,239,230,.7)}
 .hours-time{color:var(--cream);font-weight:500}
 
+/* SHOP LAYOUT */
+.shop-layout{display:grid;grid-template-columns:1fr 300px;gap:2.5rem;align-items:start}
+.shop-products{min-width:0}
+
+/* SIDE CART PANEL */
+.shop-cart-panel{position:sticky;top:88px;background:var(--cream);border-radius:14px;border:1px solid rgba(107,158,111,.2);overflow:hidden;box-shadow:0 4px 24px rgba(30,58,34,.08)}
+.scp-header{background:var(--green-deep);padding:1.1rem 1.25rem;display:flex;align-items:center;gap:.6rem}
+.scp-header h3{font-family:'Playfair Display',serif;font-size:1rem;color:var(--cream);flex:1}
+.scp-count{font-size:.75rem;color:var(--gold);letter-spacing:.05em;white-space:nowrap}
+.scp-empty{padding:2rem 1.25rem;text-align:center;color:var(--text-light);font-family:'Lora',serif;font-size:.9rem}
+.scp-items{padding:.5rem .75rem;max-height:360px;overflow-y:auto}
+.scp-item{display:flex;align-items:center;gap:.75rem;padding:.65rem .5rem;border-bottom:1px solid rgba(107,158,111,.12)}
+.scp-item:last-child{border-bottom:none}
+.scp-item-icon{width:36px;height:36px;background:var(--mist);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.scp-item-info{flex:1;min-width:0}
+.scp-item-name{font-size:.82rem;font-weight:500;color:var(--green-deep);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.scp-item-price{font-size:.76rem;color:var(--text-light);margin-top:.1rem}
+.scp-item-qty{display:flex;align-items:center;gap:.4rem;flex-shrink:0}
+.scp-qty-btn{width:22px;height:22px;border-radius:50%;border:1px solid var(--green-mid);background:none;cursor:pointer;font-size:.85rem;color:var(--green-deep);display:flex;align-items:center;justify-content:center;line-height:1;transition:all .15s}
+.scp-qty-btn:hover{background:var(--green-mid);color:white}
+.scp-item-qty-num{font-size:.82rem;font-weight:600;color:var(--green-deep);min-width:16px;text-align:center}
+.scp-item-remove{background:none;border:none;color:rgba(122,104,85,.4);cursor:pointer;font-size:.9rem;padding:.1rem .2rem;transition:color .15s;flex-shrink:0}
+.scp-item-remove:hover{color:#c0392b}
+.scp-footer{padding:1rem 1.25rem;border-top:1px solid rgba(107,158,111,.15)}
+.scp-total-row{display:flex;justify-content:space-between;align-items:baseline}
+.scp-total-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-light)}
+.scp-total-price{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--green-deep)}
+
+@media(max-width:1000px){
+  .shop-layout{grid-template-columns:1fr}
+  .shop-cart-panel{position:fixed;bottom:0;left:0;right:0;top:auto;border-radius:16px 16px 0 0;z-index:400;transform:translateY(calc(100% - 58px));transition:transform .3s;box-shadow:0 -4px 24px rgba(30,58,34,.15)}
+  .shop-cart-panel.mobile-open{transform:translateY(0)}
+  .scp-header{cursor:pointer}
+  .scp-items{max-height:40vh}
+}
+
 /* FOOTER */
 footer{background:var(--bark);padding:2.5rem 0;text-align:center}
 footer p{font-size:.85rem;color:rgba(244,239,230,.4)}
@@ -243,6 +285,62 @@ footer strong{color:var(--gold)}
 .hero-left > *:nth-child(3){animation-delay:.3s}
 .hero-left > *:nth-child(4){animation-delay:.44s}
 .hero-left > *:nth-child(5){animation-delay:.58s}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(30,58,34,.65);backdrop-filter:blur(4px);z-index:500;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--warm);border-radius:16px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.3);transform:translateY(20px);transition:transform .25s}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-img{height:220px;display:flex;align-items:center;justify-content:center;font-size:5rem;border-radius:16px 16px 0 0;position:relative;overflow:hidden}
+.modal-img img{width:100%;height:100%;object-fit:cover}
+.modal-close{position:absolute;top:1rem;right:1rem;background:rgba(0,0,0,.35);border:none;color:white;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.modal-close:hover{background:rgba(0,0,0,.6)}
+.modal-body{padding:2rem}
+.modal-category{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);margin-bottom:.4rem}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--green-deep);margin-bottom:.25rem}
+.modal-subtitle{font-style:italic;font-size:.9rem;color:var(--text-light);margin-bottom:1rem}
+.modal-desc{font-family:'Lora',serif;font-size:.98rem;line-height:1.78;color:var(--text-light);margin-bottom:1.5rem}
+.modal-details{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.5rem}
+.modal-detail-pill{background:var(--mist);color:var(--green-deep);padding:.35rem .85rem;border-radius:99px;font-size:.8rem;font-weight:500}
+.modal-price-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:1rem}
+.modal-price{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--green-deep)}
+.modal-qty{display:flex;align-items:center;gap:.75rem}
+.qty-btn{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--green-mid);background:none;cursor:pointer;font-size:1.1rem;color:var(--green-deep);display:flex;align-items:center;justify-content:center;transition:all .2s}
+.qty-btn:hover{background:var(--green-mid);color:white}
+.qty-num{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--green-deep);min-width:24px;text-align:center}
+.modal-actions{display:flex;gap:.75rem}
+.modal-actions .btn{flex:1;text-align:center;font-size:.95rem;padding:.85rem}
+
+/* CART */
+.cart-fab{position:fixed;bottom:2rem;right:2rem;z-index:300;background:var(--green-deep);color:white;border:none;border-radius:99px;padding:.75rem 1.4rem;font-family:'DM Sans',sans-serif;font-size:.9rem;cursor:pointer;display:flex;align-items:center;gap:.6rem;box-shadow:0 6px 24px rgba(30,58,34,.4);transition:all .25s;opacity:0;pointer-events:none}
+.cart-fab.visible{opacity:1;pointer-events:all}
+.cart-fab:hover{background:var(--green-mid);transform:translateY(-2px)}
+.cart-count{background:var(--gold);color:var(--bark);border-radius:99px;padding:.15rem .55rem;font-size:.78rem;font-weight:700}
+
+/* CART DRAWER */
+.cart-drawer{position:fixed;right:0;top:0;bottom:0;width:380px;max-width:100vw;background:var(--warm);z-index:600;box-shadow:-8px 0 40px rgba(0,0,0,.2);transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column}
+.cart-drawer.open{transform:translateX(0)}
+.cart-header{padding:1.5rem;border-bottom:1px solid var(--mist);display:flex;justify-content:space-between;align-items:center}
+.cart-header h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--green-deep)}
+.cart-close-btn{background:none;border:none;cursor:pointer;font-size:1.4rem;color:var(--text-light);padding:.25rem}
+.cart-items{flex:1;overflow-y:auto;padding:1rem 1.5rem}
+.cart-empty{text-align:center;padding:3rem 1rem;color:var(--text-light);font-family:'Lora',serif}
+.cart-item{display:flex;gap:1rem;align-items:center;padding:.85rem 0;border-bottom:1px solid var(--mist)}
+.cart-item-icon{width:48px;height:48px;background:var(--mist);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.cart-item-name{font-size:.9rem;font-weight:500;color:var(--green-deep);margin-bottom:.2rem}
+.cart-item-price{font-size:.85rem;color:var(--text-light)}
+.cart-item-remove{background:none;border:none;color:var(--text-light);cursor:pointer;font-size:1rem;margin-left:auto;padding:.25rem;transition:color .2s}
+.cart-item-remove:hover{color:#c0392b}
+.cart-footer{padding:1.5rem;border-top:1px solid var(--mist)}
+.cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem}
+.cart-total-label{font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-light)}
+.cart-total-price{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--green-deep)}
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:590;opacity:0;pointer-events:none;transition:opacity .3s}
+.cart-overlay.open{opacity:1;pointer-events:all}
+
+/* TOAST */
+.toast{position:fixed;bottom:6rem;right:2rem;z-index:700;background:var(--green-deep);color:white;padding:.75rem 1.25rem;border-radius:8px;font-size:.875rem;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:.6rem;box-shadow:0 4px 16px rgba(0,0,0,.2);transform:translateY(20px);opacity:0;transition:all .3s;pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
 
 /* MOBILE */
 @media(max-width:900px){
@@ -259,10 +357,69 @@ footer strong{color:var(--gold)}
   .service-row.flip{direction:ltr}
   .container{padding:0 1.25rem}
   .origin-card{position:static}
+  .cart-drawer{width:100vw}
 }
 </style>
 </head>
 <body>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-img" id="modalImg">
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-category" id="modalCategory"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-subtitle" id="modalSubtitle"></div>
+      <div class="modal-desc" id="modalDesc"></div>
+      <div class="modal-details" id="modalDetails"></div>
+      <div class="modal-price-row">
+        <div class="modal-price" id="modalPrice"></div>
+        <div class="modal-qty">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <span class="qty-num" id="qtyNum">1</span>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-gold" onclick="addToCart()" style="font-size:.95rem">Add to Cart 🛒</button>
+        <button class="btn btn-outline-dark" onclick="closeModalDirect();showPage('contact')" style="font-size:.95rem">Ask a Question</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>🛒 Your Cart</h3>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">Your cart is empty.<br>Browse our products to get started!</div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-price" id="cartTotal">$0.00</span>
+    </div>
+    <button class="btn btn-gold" style="width:100%;font-size:1rem;padding:.9rem" onclick="checkout()">Request Order →</button>
+    <p style="font-size:.75rem;color:var(--text-light);text-align:center;margin-top:.75rem;line-height:1.5">We'll follow up by email to confirm your order and arrange pickup or delivery.</p>
+  </div>
+</div>
+
+<!-- CART FAB -->
+<button class="cart-fab" id="cartFab" onclick="openCart()">
+  🛒 Cart <span class="cart-count" id="cartCount">0</span>
+</button>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Added to cart</div>
 
 <nav>
   <div class="nav-brand" onclick="showPage('home')">
@@ -294,9 +451,9 @@ footer strong{color:var(--gold)}
         <button class="btn btn-outline-light" onclick="showPage('about')">Why Go Native?</button>
       </div>
       <div class="hero-stats">
-        <div><div class="stat-n">75%</div><div class="stat-l">Less Water Used</div></div>
-        <div><div class="stat-n">1,600</div><div class="stat-l">Native CA Bee Species</div></div>
-        <div><div class="stat-n">200+</div><div class="stat-l">Plant Varieties We Carry</div></div>
+        <div><div class="stat-n">85%</div><div class="stat-l">Less Water Per Year</div></div>
+        <div><div class="stat-n">1,600+</div><div class="stat-l">Native CA Bee Species</div></div>
+        <div><div class="stat-n">5,500+</div><div class="stat-l">CA Native Plant Species</div></div>
       </div>
     </div>
     <div class="hero-right">
@@ -335,13 +492,13 @@ footer strong{color:var(--gold)}
 
   <div class="why-strip">
     <div class="why-strip-inner">
-      <div class="why-fact"><div class="why-fact-num">50–75%</div><div class="why-fact-txt">less water than traditional lawns*</div></div>
+      <div class="why-fact"><div class="why-fact-num">85%</div><div class="why-fact-txt">less water vs turf &amp; high-water landscaping*</div></div>
       <div style="width:1px;height:36px;background:rgba(45,31,16,.2)"></div>
-      <div class="why-fact"><div class="why-fact-num">12,000</div><div class="why-fact-txt">gal/yr saved per 1,000 sq ft*</div></div>
+      <div class="why-fact"><div class="why-fact-num">80%</div><div class="why-fact-txt">less water to maintain than non-natives*</div></div>
       <div style="width:1px;height:36px;background:rgba(45,31,16,.2)"></div>
-      <div class="why-fact"><div class="why-fact-num">90%</div><div class="why-fact-txt">of flowering plants need pollinators*</div></div>
+      <div class="why-fact"><div class="why-fact-num">1,600+</div><div class="why-fact-txt">native bee species supported in CA*</div></div>
       <div style="width:1px;height:36px;background:rgba(45,31,16,.2)"></div>
-      <div class="why-fact"><div class="why-fact-num">50%</div><div class="why-fact-txt">of CA residential water = landscaping*</div></div>
+      <div class="why-fact"><div class="why-fact-num">5,500+</div><div class="why-fact-txt">plant species native to CA, 40% found nowhere else*</div></div>
     </div>
   </div>
 
@@ -366,10 +523,10 @@ footer strong{color:var(--gold)}
           <h3>The Numbers Don't Lie</h3>
           <p>Real figures from California water authorities, UC research, and conservation organizations.</p>
           <ul class="data-list">
-            <li><div class="data-icon">💧</div><div class="data-label"><strong>60–80% Less Water</strong>Native plants require 60–80% less water than conventional landscaping (Calscape / CNPS)</div></li>
-            <li><div class="data-icon">🐝</div><div class="data-label"><strong>1,600 Native Bee Species</strong>CA is home to 1,600 native bee species — all dependent on native plants for habitat (CNPS)</div></li>
-            <li><div class="data-icon">🦋</div><div class="data-label"><strong>200+ Butterfly Species</strong>The CA Floristic Province supports 200+ butterfly species coevolved with native plants (Xerces Society)</div></li>
-            <li><div class="data-icon">🌾</div><div class="data-label"><strong>Zero Chemical Inputs</strong>Once established, natives need no fertilizers or pesticides — adapted to CA's low-nutrient soils (LA Waterkeeper)</div></li>
+            <li><div class="data-icon">💧</div><div class="data-label"><strong>85% Less Water Per Year</strong>A drought-tolerant native garden uses 85% less water than a traditional turf landscape (CA Dept. of Water Resources)</div></li>
+            <li><div class="data-icon">🌱</div><div class="data-label"><strong>80% Less Water to Maintain</strong>Native plants require 80% less water to maintain than non-native species (California Native Plant Society)</div></li>
+            <li><div class="data-icon">🐝</div><div class="data-label"><strong>1,600+ Native Bee Species</strong>CA native plants attract and sustain ~1,600 native bee species — 44% of all bee species in North America (CA Dept. of Fish and Wildlife)</div></li>
+            <li><div class="data-icon">🌾</div><div class="data-label"><strong>5,500+ Native Plant Species</strong>Over 5,500 plant species are native to California. 40% are found nowhere else on Earth (UC Santa Cruz)</div></li>
           </ul>
         </div>
       </div>
@@ -394,10 +551,10 @@ footer strong{color:var(--gold)}
 
   <div class="savings-banner">
     <div class="container">
-      <h2>12,000 Gallons Saved Per Year.<br>Per 1,000 Sq Ft of Lawn Replaced.</h2>
-      <p>That's the estimate from the California Native Plant Society for a typical California home. With water rates rising every year, native landscaping is one of the smartest investments you can make.</p>
-      <button class="btn btn-gold" onclick="showPage('contact')">Start Saving — Get a Free Quote</button>
-      <p class="savings-source">*Sources: California Native Plant Society, Calscape, LA Waterkeeper, Xerces Society, UC Davis Arboretum</p>
+      <h2>85% Less Water Per Year.<br>Just By Switching to Native Plants.</h2>
+      <p>A sustainably designed, drought-tolerant native garden can use 85% less water per year than a traditional landscape with turf and high-water-use plants — CA Dept. of Water Resources.</p>
+      <button class="btn btn-gold" onclick="showPage('contact')">Start Saving — Book a Free Consultation</button>
+      <p class="savings-source">Sources: CA Dept. of Water Resources · California Native Plant Society · CA Dept. of Fish and Wildlife · UC Santa Cruz</p>
     </div>
   </div>
   <footer><p>&copy; 2026 <strong>Brandon's Backyard Botanica</strong> &middot; Ventura, California &middot; All rights reserved 🌿</p></footer>
@@ -424,10 +581,10 @@ footer strong{color:var(--gold)}
             <p>It didn't make sense. California has one of the richest native floras on Earth — thousands of beautiful, low-water plants that evolved here over millions of years and ask for almost nothing in return. Yet most nurseries still shelve the same imported ornamentals that require constant watering, fertilizing, and pesticide applications just to survive here.</p>
             <p>Brandon's Backyard Botanica was founded to fix that disconnect: to make California native plants accessible, affordable, and approachable for every homeowner in our region.</p>
             <div class="values-grid">
-              <div class="value-card"><h4>🌊 Water Stewardship</h4><p>50% of California's residential water goes to landscape irrigation. Native planting is one of the highest-impact water conservation actions a homeowner can take.</p></div>
-              <div class="value-card"><h4>🦋 Ecological Integrity</h4><p>Native plants support the 1,600+ native bee species and 200+ butterfly species that California's ecosystems depend on. Exotic ornamentals cannot do this.</p></div>
-              <div class="value-card"><h4>🏡 Homeowner Value</h4><p>A native garden can reduce outdoor water use by 60–80%. That's real money back in your pocket every month while making your yard more beautiful.</p></div>
-              <div class="value-card"><h4>🔬 Evidence-Based</h4><p>Everything we recommend is backed by UC Extension research, CNPS data, and Xerces Society science. We know what works in Ventura County soils.</p></div>
+              <div class="value-card"><h4>🌊 Water Stewardship</h4><p>A native garden uses 85% less water per year than traditional turf landscaping. That's real money saved every month — and a direct contribution to California's water security.</p></div>
+              <div class="value-card"><h4>🦋 Ecological Integrity</h4><p>CA native plants support 1,600+ native bee species — roughly 44% of all bee species in North America. Exotic ornamentals simply cannot do this.</p></div>
+              <div class="value-card"><h4>🏡 Homeowner Value</h4><p>Native plants require 80% less water to maintain than non-native species. Lower bills, lower maintenance, and a yard that looks better with less effort.</p></div>
+              <div class="value-card"><h4>🔬 Evidence-Based</h4><p>Over 5,500 plant species are native to California — 40% found nowhere else on Earth (UC Santa Cruz). We protect and propagate this irreplaceable biodiversity.</p></div>
             </div>
           </div>
           <div>
@@ -454,14 +611,14 @@ footer strong{color:var(--gold)}
         <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,2.5vw,2.6rem);color:var(--cream);text-align:center;margin-bottom:1rem;line-height:1.15">Why Native Plants Are Better — By the Numbers</h2>
         <p style="font-family:'Lora',serif;font-size:1rem;color:rgba(244,239,230,.75);text-align:center;max-width:580px;margin:0 auto 3rem;line-height:1.8">Published figures from California's leading water and conservation authorities.</p>
         <div class="stats-row">
-          <div class="stat-box"><div class="n">60–80%</div><div class="l">Less Water Needed</div><div class="stat-src">Calscape / CNPS</div></div>
-          <div class="stat-box"><div class="n">12,000</div><div class="l">Gallons Saved/Yr per 1,000 sqft</div><div class="stat-src">CA Native Plant Society</div></div>
-          <div class="stat-box"><div class="n">1,600</div><div class="l">Native Bee Species in CA</div><div class="stat-src">CNPS / UC Davis</div></div>
-          <div class="stat-box"><div class="n">90%</div><div class="l">Of Flowering Plants Need Pollinators</div><div class="stat-src">UC Davis Arboretum</div></div>
+          <div class="stat-box"><div class="n">85%</div><div class="l">Less Water vs Traditional Landscape</div><div class="stat-src">CA Dept. of Water Resources</div></div>
+          <div class="stat-box"><div class="n">80%</div><div class="l">Less Water to Maintain Than Non-Natives</div><div class="stat-src">California Native Plant Society</div></div>
+          <div class="stat-box"><div class="n">1,600+</div><div class="l">Native Bee Species in CA</div><div class="stat-src">CA Dept. of Fish &amp; Wildlife</div></div>
+          <div class="stat-box"><div class="n">44%</div><div class="l">Of All N. American Bee Species in CA</div><div class="stat-src">CA Dept. of Fish &amp; Wildlife</div></div>
         </div>
         <div class="stats-row">
-          <div class="stat-box"><div class="n">50%</div><div class="l">of CA Residential Water = Landscaping</div><div class="stat-src">Calscape</div></div>
-          <div class="stat-box"><div class="n">200+</div><div class="l">Butterfly Species Supported</div><div class="stat-src">Xerces Society</div></div>
+          <div class="stat-box"><div class="n">5,500+</div><div class="l">Plant Species Native to California</div><div class="stat-src">UC Santa Cruz</div></div>
+          <div class="stat-box"><div class="n">40%</div><div class="l">Of CA Native Plants Found Nowhere Else</div><div class="stat-src">UC Santa Cruz</div></div>
           <div class="stat-box"><div class="n">0</div><div class="l">Fertilizers or Pesticides Needed</div><div class="stat-src">LA Waterkeeper</div></div>
           <div class="stat-box"><div class="n">36</div><div class="l">Global Biodiversity Hotspots — CA is One</div><div class="stat-src">Environmental Nature Center</div></div>
         </div>
@@ -567,57 +724,300 @@ footer strong{color:var(--gold)}
   <div class="page-wrap">
     <div class="products-hero">
       <div class="container">
-        <p class="eyebrow eyebrow-light">Our Plants</p>
-        <h1>200+ California Natives,<br>Nursery-Grown in Ventura.</h1>
-        <p>Every plant is proven for our local soils and climate. Filter by category below.</p>
+        <p class="eyebrow eyebrow-light">Our Products</p>
+        <h1>Seeds, Kits &amp; Bundles<br>for Every Yard.</h1>
+        <p>From single seed packets to full lawn conversion bundles — everything grown and curated for California's climate.</p>
       </div>
     </div>
 
     <div class="section">
       <div class="container">
+        <div class="shop-layout">
+
+          <!-- LEFT: Products -->
+          <div class="shop-products">
+
+        <!-- Filter bar -->
         <div class="filter-bar">
-          <button class="filter-btn active" onclick="filterProducts('all',this)">All Plants</button>
-          <button class="filter-btn" onclick="filterProducts('flower',this)">🌸 Wildflowers</button>
-          <button class="filter-btn" onclick="filterProducts('shrub',this)">🌿 Shrubs</button>
-          <button class="filter-btn" onclick="filterProducts('tree',this)">🌳 Trees</button>
-          <button class="filter-btn" onclick="filterProducts('grass',this)">🌾 Grasses</button>
-          <button class="filter-btn" onclick="filterProducts('groundcover',this)">🍃 Groundcovers</button>
-          <button class="filter-btn" onclick="filterProducts('cactus',this)">🌵 Succulents</button>
+          <button class="filter-btn active" onclick="filterProducts('all',this)">All Products</button>
+          <button class="filter-btn" onclick="filterProducts('plant',this)">🌿 Native Plants</button>
+          <button class="filter-btn" onclick="filterProducts('retail',this)">🌱 Retail Packets</button>
+          <button class="filter-btn" onclick="filterProducts('bulk',this)">⚖️ Bulk Supply</button>
+          <button class="filter-btn" onclick="filterProducts('kit',this)">📦 Garden Kits</button>
+          <button class="filter-btn" onclick="filterProducts('bundle',this)">🎁 Starter Bundles</button>
+          <button class="filter-btn" onclick="filterProducts('subscription',this)">🔄 Subscriptions</button>
         </div>
 
-        <div class="products-grid" id="productsGrid">
-          <div class="product-card pc-flower" data-cat="flower" data-wiki="Eschscholzia_californica"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">California Poppy</div><div class="product-latin">Eschscholzia californica</div><div class="product-desc">The state flower. Self-seeding annual blazing gold from February through May. Nearly zero water once established.</div><div class="product-footer"><div class="product-price">From $6</div><div class="product-tags"><span class="tag tag-water">Low Water</span><span class="tag tag-bee">Bees</span></div></div></div></div>
+        <!-- ---- NATIVE PLANTS ---- -->
+        <div class="cat-section" data-cat="plant">
+          <div class="cat-header">
+            <div class="cat-icon">🌿</div>
+            <div>
+              <h2 class="cat-title">Native Plants</h2>
+              <p class="cat-desc">Individual California native plants, nursery-grown in Ventura. Every species is proven for our local soils, climate, and wildlife.</p>
+            </div>
+          </div>
+          <div class="products-grid">
 
-          <div class="product-card pc-shrub" data-cat="shrub" data-wiki="Salvia_clevelandii"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Cleveland Sage</div><div class="product-latin">Salvia clevelandii</div><div class="product-desc">Intensely fragrant, deer-resistant, and a hummingbird magnet. One of Southern California's most beloved native shrubs.</div><div class="product-footer"><div class="product-price">From $18</div><div class="product-tags"><span class="tag tag-water">Drought Hardy</span><span class="tag tag-bird">Hummingbirds</span></div></div></div></div>
+            <div class="product-card" data-cat="plant" data-wiki="Eschscholzia_californica">
+              <div class="product-img"><div class="img-loading">🌿</div></div>
+              <div class="product-body"><div class="product-name">California Poppy</div><div class="product-latin">Eschscholzia californica</div><div class="product-desc">The state flower. Self-seeding annual blazing gold from February through May. Nearly zero water once established.</div><div class="product-footer"><div class="product-price">From $6</div><div class="product-tags"><span class="tag tag-water">Low Water</span><span class="tag tag-bee">Bees</span></div></div></div>
+            </div>
 
-          <div class="product-card pc-tree" data-cat="tree" data-wiki="Quercus_lobata"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Valley Oak</div><div class="product-latin">Quercus lobata</div><div class="product-desc">California's signature heritage tree. Supports over 100 native wildlife species. A legacy planting for generations.</div><div class="product-footer"><div class="product-price">From $45</div><div class="product-tags"><span class="tag tag-bird">Wildlife</span><span class="tag tag-fire">Fire-Adapted</span></div></div></div></div>
+            <div class="product-card" data-cat="plant" data-wiki="Salvia_clevelandii">
+              <div class="product-img"><div class="img-loading">🌿</div></div>
+              <div class="product-body"><div class="product-name">Cleveland Sage</div><div class="product-latin">Salvia clevelandii</div><div class="product-desc">Intensely fragrant, deer-resistant, and a hummingbird magnet. One of Southern California's most beloved native shrubs.</div><div class="product-footer"><div class="product-price">From $18</div><div class="product-tags"><span class="tag tag-water">Drought Hardy</span><span class="tag tag-bird">Hummingbirds</span></div></div></div>
+            </div>
 
-          <div class="product-card pc-shrub" data-cat="shrub" data-wiki="Salvia_spathacea"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Hummingbird Sage</div><div class="product-latin">Salvia spathacea</div><div class="product-desc">Bold magenta flower spikes attract hummingbirds spring through fall. Spreads as a shade-tolerant groundcover under oaks.</div><div class="product-footer"><div class="product-price">From $16</div><div class="product-tags"><span class="tag tag-bird">Hummingbirds</span><span class="tag tag-water">Low Water</span></div></div></div></div>
+            <div class="product-card" data-cat="plant" data-wiki="Quercus_lobata">
+              <div class="product-img"><div class="img-loading">🌿</div></div>
+              <div class="product-body"><div class="product-name">Valley Oak</div><div class="product-latin">Quercus lobata</div><div class="product-desc">California's signature heritage tree. Supports over 100 native wildlife species. A legacy planting for generations.</div><div class="product-footer"><div class="product-price">From $45</div><div class="product-tags"><span class="tag tag-bird">Wildlife</span><span class="tag tag-fire">Fire-Adapted</span></div></div></div>
+            </div>
 
-          <div class="product-card pc-shrub" data-cat="shrub" data-wiki="Heteromeles_arbutifolia"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Toyon (Christmas Berry)</div><div class="product-latin">Heteromeles arbutifolia</div><div class="product-desc">The native that gave Hollywood its name. Brilliant red berries in winter feed migrating birds. Excellent privacy screen.</div><div class="product-footer"><div class="product-price">From $24</div><div class="product-tags"><span class="tag tag-bird">Birds</span><span class="tag tag-fire">Fire-Wise</span></div></div></div></div>
+            <div class="product-card" data-cat="plant" data-wiki="Salvia_spathacea">
+              <div class="product-img"><div class="img-loading">🌿</div></div>
+              <div class="product-body"><div class="product-name">Hummingbird Sage</div><div class="product-latin">Salvia spathacea</div><div class="product-desc">Bold magenta flower spikes attract hummingbirds spring through fall. Spreads as a shade-tolerant groundcover under oaks.</div><div class="product-footer"><div class="product-price">From $16</div><div class="product-tags"><span class="tag tag-bird">Hummingbirds</span><span class="tag tag-water">Low Water</span></div></div></div>
+            </div>
 
-          <div class="product-card pc-grass" data-cat="grass" data-wiki="Nassella_pulchra"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Purple Needlegrass</div><div class="product-latin">Stipa pulchra</div><div class="product-desc">California's state grass. Creates a naturalistic, low-water lawn alternative with stunning purple seed heads in spring.</div><div class="product-footer"><div class="product-price">From $12</div><div class="product-tags"><span class="tag tag-water">Drought Hardy</span><span class="tag tag-bee">Bees</span></div></div></div></div>
+            <div class="product-card" data-cat="plant" data-wiki="Heteromeles_arbutifolia">
+              <div class="product-img"><div class="img-loading">🌿</div></div>
+              <div class="product-body"><div class="product-name">Toyon (Christmas Berry)</div><div class="product-latin">Heteromeles arbutifolia</div><div class="product-desc">The native that gave Hollywood its name. Brilliant red berries in winter feed migrating birds. Excellent privacy screen.</div><div class="product-footer"><div class="product-price">From $24</div><div class="product-tags"><span class="tag tag-bird">Birds</span><span class="tag tag-fire">Fire-Wise</span></div></div></div>
+            </div>
 
-          <div class="product-card pc-groundcover" data-cat="groundcover" data-wiki="Baccharis_pilularis"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Coyote Brush</div><div class="product-latin">Baccharis pilularis</div><div class="product-desc">Fast-spreading groundcover that locks in slopes and produces clouds of tiny flowers loved by pollinators.</div><div class="product-footer"><div class="product-price">From $14</div><div class="product-tags"><span class="tag tag-bee">Pollinators</span><span class="tag tag-fire">Fire-Wise</span></div></div></div></div>
+            <div class="product-card" data-cat="plant" data-wiki="Nassella_pulchra">
+              <div class="product-img"><div class="img-loading">🌿</div></div>
+              <div class="product-body"><div class="product-name">Purple Needlegrass</div><div class="product-latin">Stipa pulchra</div><div class="product-desc">California's state grass. Creates a naturalistic, low-water lawn alternative with stunning purple seed heads in spring.</div><div class="product-footer"><div class="product-price">From $12</div><div class="product-tags"><span class="tag tag-water">Drought Hardy</span><span class="tag tag-bee">Bees</span></div></div></div>
+            </div>
 
-          <div class="product-card pc-cactus" data-cat="cactus" data-wiki="Opuntia_basilaris"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Prickly Pear</div><div class="product-latin">Opuntia basilaris</div><div class="product-desc">Striking geometric form, edible fruit, and zero irrigation once established. A bold statement plant for dry gardens.</div><div class="product-footer"><div class="product-price">From $22</div><div class="product-tags"><span class="tag tag-water">Zero Water</span><span class="tag tag-bird">Wildlife</span></div></div></div></div>
+            <div class="product-card" data-cat="plant" data-wiki="Baccharis_pilularis">
+              <div class="product-img"><div class="img-loading">🌿</div></div>
+              <div class="product-body"><div class="product-name">Coyote Brush</div><div class="product-latin">Baccharis pilularis</div><div class="product-desc">Fast-spreading groundcover that locks in slopes and produces clouds of tiny flowers loved by pollinators.</div><div class="product-footer"><div class="product-price">From $14</div><div class="product-tags"><span class="tag tag-bee">Pollinators</span><span class="tag tag-fire">Fire-Wise</span></div></div></div>
+            </div>
 
-          <div class="product-card pc-flower" data-cat="flower" data-wiki="Eriogonum_fasciculatum"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">California Buckwheat</div><div class="product-latin">Eriogonum fasciculatum</div><div class="product-desc">A pollinator powerhouse — white-to-rust flowers through summer and fall. One of the most insect-supportive natives available.</div><div class="product-footer"><div class="product-price">From $15</div><div class="product-tags"><span class="tag tag-bee">Bees</span><span class="tag tag-bee">Butterflies</span></div></div></div></div>
+            <div class="product-card" data-cat="plant" data-wiki="Opuntia_basilaris">
+              <div class="product-img"><div class="img-loading">🌿</div></div>
+              <div class="product-body"><div class="product-name">Prickly Pear</div><div class="product-latin">Opuntia basilaris</div><div class="product-desc">Striking geometric form, edible fruit, and zero irrigation once established. A bold statement plant for dry gardens.</div><div class="product-footer"><div class="product-price">From $22</div><div class="product-tags"><span class="tag tag-water">Zero Water</span><span class="tag tag-bird">Wildlife</span></div></div></div>
+            </div>
 
-          <div class="product-card pc-tree" data-cat="tree" data-wiki="Quercus_agrifolia"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Coast Live Oak</div><div class="product-latin">Quercus agrifolia</div><div class="product-desc">The backbone of California's coastal woodland. Supports hundreds of insect species and provides year-round canopy.</div><div class="product-footer"><div class="product-price">From $55</div><div class="product-tags"><span class="tag tag-bird">Wildlife</span><span class="tag tag-water">Low Water</span></div></div></div></div>
+            <div class="product-card" data-cat="plant" data-wiki="Eriogonum_fasciculatum">
+              <div class="product-img"><div class="img-loading">🌿</div></div>
+              <div class="product-body"><div class="product-name">California Buckwheat</div><div class="product-latin">Eriogonum fasciculatum</div><div class="product-desc">A pollinator powerhouse — white-to-rust flowers through summer and fall. One of the most insect-supportive natives available.</div><div class="product-footer"><div class="product-price">From $15</div><div class="product-tags"><span class="tag tag-bee">Bees</span><span class="tag tag-bee">Butterflies</span></div></div></div>
+            </div>
 
-          <div class="product-card pc-flower" data-cat="flower" data-wiki="Clarkia_unguiculata"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Elegant Clarkia</div><div class="product-latin">Clarkia unguiculata</div><div class="product-desc">Lavender-pink flowers blanket roadsides from late spring through early summer. Easy from seed, stunning in mass plantings.</div><div class="product-footer"><div class="product-price">From $5</div><div class="product-tags"><span class="tag tag-bee">Bees</span><span class="tag tag-water">Low Water</span></div></div></div></div>
+            <div class="product-card" data-cat="plant" data-wiki="Quercus_agrifolia">
+              <div class="product-img"><div class="img-loading">🌿</div></div>
+              <div class="product-body"><div class="product-name">Coast Live Oak</div><div class="product-latin">Quercus agrifolia</div><div class="product-desc">The backbone of California's coastal woodland. Supports hundreds of insect species and provides year-round canopy.</div><div class="product-footer"><div class="product-price">From $55</div><div class="product-tags"><span class="tag tag-bird">Wildlife</span><span class="tag tag-water">Low Water</span></div></div></div>
+            </div>
 
-          <div class="product-card pc-groundcover" data-cat="groundcover" data-wiki="Achillea_millefolium"><div class="product-img"><div class="img-loading">🌿</div></div><div class="product-body"><div class="product-name">Woolly Yarrow</div><div class="product-latin">Achillea millefolium</div><div class="product-desc">Dense, fragrant groundcover that tolerates foot traffic. Creates a soft lawn alternative that never needs mowing.</div><div class="product-footer"><div class="product-price">From $11</div><div class="product-tags"><span class="tag tag-bee">Bees</span><span class="tag tag-water">Drought Hardy</span></div></div></div></div>
+            <div class="product-card" data-cat="plant" data-wiki="Clarkia_unguiculata">
+              <div class="product-img"><div class="img-loading">🌿</div></div>
+              <div class="product-body"><div class="product-name">Elegant Clarkia</div><div class="product-latin">Clarkia unguiculata</div><div class="product-desc">Lavender-pink flowers blanket roadsides from late spring through early summer. Easy from seed, stunning in mass plantings.</div><div class="product-footer"><div class="product-price">From $5</div><div class="product-tags"><span class="tag tag-bee">Bees</span><span class="tag tag-water">Low Water</span></div></div></div>
+            </div>
+
+            <div class="product-card" data-cat="plant" data-wiki="Achillea_millefolium">
+              <div class="product-img"><div class="img-loading">🌿</div></div>
+              <div class="product-body"><div class="product-name">Woolly Yarrow</div><div class="product-latin">Achillea millefolium</div><div class="product-desc">Dense, fragrant groundcover that tolerates foot traffic. Creates a soft lawn alternative that never needs mowing.</div><div class="product-footer"><div class="product-price">From $11</div><div class="product-tags"><span class="tag tag-bee">Bees</span><span class="tag tag-water">Drought Hardy</span></div></div></div>
+            </div>
+
+          </div>
         </div>
 
+        <!-- ---- RETAIL PACKETS ---- -->
+        <div class="cat-section" data-cat="retail">
+          <div class="cat-header">
+            <div class="cat-icon">🌱</div>
+            <div>
+              <h2 class="cat-title">Retail Seed Packets</h2>
+              <p class="cat-desc">Ready-to-sow native seed packets sized for home gardens. Each blend is regionally appropriate for Ventura County soils and climate.</p>
+            </div>
+          </div>
+          <div class="products-grid">
+
+            <div class="product-card" data-cat="retail">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1490750967868-88df5691166a?w=400&q=80" alt="Prairie Meadow Mix" onerror="this.parentNode.innerHTML='<div class=img-loading>🌾</div>'"></div>
+              <div class="product-body"><div class="product-name">Prairie Meadow Mix</div><div class="product-latin">Regional meadow blend</div><div class="product-desc">A beautiful regional wildflower and grass blend that mimics native meadow communities. Covers up to 150 sq ft.</div><div class="product-footer"><div class="product-price">$12.99</div><div class="product-tags"><span class="tag tag-water">150 sq ft</span></div></div></div>
+            </div>
+
+            <div class="product-card" data-cat="retail">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Shade Native Blend" onerror="this.parentNode.innerHTML='<div class=img-loading>🌿</div>'"></div>
+              <div class="product-body"><div class="product-name">Shade Native Blend</div><div class="product-latin">Low-sun native species</div><div class="product-desc">Specially selected native species that thrive in part shade and low-light conditions — perfect for areas under trees or along north-facing walls.</div><div class="product-footer"><div class="product-price">$10.99</div><div class="product-tags"><span class="tag tag-water">75 sq ft</span></div></div></div>
+            </div>
+
+            <div class="product-card" data-cat="retail">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=400&q=80" alt="Drought Defender Mix" onerror="this.parentNode.innerHTML='<div class=img-loading>☀️</div>'"></div>
+              <div class="product-body"><div class="product-name">Drought Defender Mix</div><div class="product-latin">Dry climate blend</div><div class="product-desc">Ultra-drought-tolerant native mix designed for the hottest, driest spots in your yard. Once established, survives on rainfall alone.</div><div class="product-footer"><div class="product-price">$13.99</div><div class="product-tags"><span class="tag tag-water">120 sq ft</span></div></div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ---- BULK SUPPLY ---- -->
+        <div class="cat-section" data-cat="bulk">
+          <div class="cat-header">
+            <div class="cat-icon">⚖️</div>
+            <div>
+              <h2 class="cat-title">Bulk Seed Supply</h2>
+              <p class="cat-desc">Large-quantity native seed mixes for contractors, HOAs, restoration projects, and large-acreage conversions.</p>
+            </div>
+          </div>
+          <div class="products-grid">
+
+            <div class="product-card" data-cat="bulk">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1465311440653-ba9b1d9b0f5b?w=400&q=80" alt="Native Prairie Restoration" onerror="this.parentNode.innerHTML='<div class=img-loading>🌾</div>'"></div>
+              <div class="product-body"><div class="product-name">Native Prairie Restoration</div><div class="product-latin">Contractor acreage mix</div><div class="product-desc">Professional-grade native prairie seed mix for large-scale ecological restoration. Covers approximately 1 acre.</div><div class="product-footer"><div class="product-price">$249.00</div><div class="product-tags"><span class="tag tag-water">25 lb / ~1 acre</span></div></div></div>
+            </div>
+
+            <div class="product-card" data-cat="bulk">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80" alt="Roadside Erosion Mix" onerror="this.parentNode.innerHTML='<div class=img-loading>🏔️</div>'"></div>
+              <div class="product-body"><div class="product-name">Roadside Erosion Mix</div><div class="product-latin">Slope stabilization blend</div><div class="product-desc">Deep-rooting native mix engineered to stabilize slopes, roadsides, and erosion-prone areas. Covers ~1.5 acres.</div><div class="product-footer"><div class="product-price">$399.00</div><div class="product-tags"><span class="tag tag-water">50 lb / ~1.5 acre</span></div></div></div>
+            </div>
+
+            <div class="product-card" data-cat="bulk">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80" alt="Custom Regional Blend" onerror="this.parentNode.innerHTML='<div class=img-loading>🧪</div>'"></div>
+              <div class="product-body"><div class="product-name">Custom Regional Blend</div><div class="product-latin">25 lb custom ecology mix</div><div class="product-desc">A fully custom native seed blend formulated to match your specific site ecology, soil type, and restoration goals.</div><div class="product-footer"><div class="product-price">$299.00</div><div class="product-tags"><span class="tag tag-water">25 lb</span></div></div></div>
+            </div>
+
+            <div class="product-card" data-cat="bulk">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1560348137-7b0dfb4e1fc0?w=400&q=80" alt="HOA Conversion Mix" onerror="this.parentNode.innerHTML='<div class=img-loading>🏘️</div>'"></div>
+              <div class="product-body"><div class="product-name">HOA Conversion Mix</div><div class="product-latin">Large property native turf</div><div class="product-desc">Designed for HOA common areas and large residential properties transitioning from turf grass to native groundcover.</div><div class="product-footer"><div class="product-price">$449.00</div><div class="product-tags"><span class="tag tag-water">50 lb / ~1 acre</span></div></div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ---- GARDEN KITS ---- -->
+        <div class="cat-section" data-cat="kit">
+          <div class="cat-header">
+            <div class="cat-icon">📦</div>
+            <div>
+              <h2 class="cat-title">Garden Kits</h2>
+              <p class="cat-desc">Complete kits with everything you need to get started — seed, soil booster, and a planting guide included in every box.</p>
+            </div>
+          </div>
+          <div class="products-grid">
+
+            <div class="product-card" data-cat="kit">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1471193945509-9ad0617afabf?w=400&q=80" alt="Pollinator Garden Kit" onerror="this.parentNode.innerHTML='<div class=img-loading>🐝</div>'"></div>
+              <div class="product-body"><div class="product-name">Pollinator Garden Kit</div><div class="product-latin">Seed + Soil Booster + planting guide</div><div class="product-desc">Everything you need to create a thriving pollinator habitat. Includes a curated native seed blend, organic soil booster, and step-by-step planting guide.</div><div class="product-footer"><div class="product-price">$39.00</div><div class="product-tags"><span class="tag tag-bee">Bees &amp; Butterflies</span></div></div></div>
+            </div>
+
+            <div class="product-card" data-cat="kit">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=400&q=80" alt="Native Lawn Replacement Kit" onerror="this.parentNode.innerHTML='<div class=img-loading>🌱</div>'"></div>
+              <div class="product-body"><div class="product-name">Native Lawn Replacement Kit</div><div class="product-latin">Seed + Amendment + flags</div><div class="product-desc">Ditch the turf. This kit includes a full native groundcover seed blend, soil amendment, and marking flags for layout planning.</div><div class="product-footer"><div class="product-price">$59.00</div><div class="product-tags"><span class="tag tag-water">Low Water</span></div></div></div>
+            </div>
+
+            <div class="product-card" data-cat="kit">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Backyard Prairie Kit" onerror="this.parentNode.innerHTML='<div class=img-loading>🌄</div>'"></div>
+              <div class="product-body"><div class="product-name">Backyard Prairie Kit</div><div class="product-latin">Premium meadow install kit</div><div class="product-desc">Our premium kit for creating a full native meadow aesthetic in your backyard. Includes a curated multi-species blend for stunning seasonal color.</div><div class="product-footer"><div class="product-price">$79.00</div><div class="product-tags"><span class="tag tag-bee">Wildlife</span></div></div></div>
+            </div>
+
+            <div class="product-card" data-cat="kit">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c?w=400&q=80" alt="Butterfly Habitat Kit" onerror="this.parentNode.innerHTML='<div class=img-loading>🦋</div>'"></div>
+              <div class="product-body"><div class="product-name">Butterfly Habitat Kit</div><div class="product-latin">Target bloom species mix kit box</div><div class="product-desc">Specially selected native species that serve as host and nectar plants for California's native butterfly populations, including monarchs.</div><div class="product-footer"><div class="product-price">$44.00</div><div class="product-tags"><span class="tag tag-bee">Butterflies</span></div></div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ---- STARTER BUNDLES ---- -->
+        <div class="cat-section" data-cat="bundle">
+          <div class="cat-header">
+            <div class="cat-icon">🎁</div>
+            <div>
+              <h2 class="cat-title">Starter Bundles</h2>
+              <p class="cat-desc">Our best-value bundles — multiple products combined at a discount for homeowners ready to make a real commitment to native landscaping.</p>
+            </div>
+          </div>
+          <div class="products-grid">
+
+            <div class="product-card" data-cat="bundle">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80" alt="Homeowner Starter Bundle" onerror="this.parentNode.innerHTML='<div class=img-loading>🏠</div>'"></div>
+              <div class="product-body"><div class="product-name">Homeowner Starter Bundle</div><div class="product-latin">3 packets + mini spreader</div><div class="product-desc">The perfect entry point. Includes 3 curated native seed packets suited to your yard type, plus a mini hand spreader for easy application.</div><div class="product-footer"><div class="product-price">$34.99</div><div class="product-tags"><span class="tag tag-water">Best Value</span></div></div></div>
+            </div>
+
+            <div class="product-card" data-cat="bundle">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=400&q=80" alt="Lawn Conversion Bundle" onerror="this.parentNode.innerHTML='<div class=img-loading>💧</div>'"></div>
+              <div class="product-body"><div class="product-name">Lawn Conversion Bundle</div><div class="product-latin">Seed + Booster + erosion mat</div><div class="product-desc">Everything you need to convert a traditional lawn to native groundcover: native seed blend, organic soil booster, and a biodegradable erosion mat.</div><div class="product-footer"><div class="product-price">$119.00</div><div class="product-tags"><span class="tag tag-water">Save on Water Bills</span></div></div></div>
+            </div>
+
+            <div class="product-card" data-cat="bundle">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=400&q=80" alt="Pollinator Paradise Bundle" onerror="this.parentNode.innerHTML='<div class=img-loading>🌸</div>'"></div>
+              <div class="product-body"><div class="product-name">Pollinator Paradise Bundle</div><div class="product-latin">4 specialty blends + booklet</div><div class="product-desc">Four hand-selected native seed specialty blends targeting bees, butterflies, hummingbirds, and beneficial insects — plus our native gardening booklet.</div><div class="product-footer"><div class="product-price">$89.00</div><div class="product-tags"><span class="tag tag-bee">Bees &amp; Birds</span></div></div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ---- SUBSCRIPTIONS ---- -->
+        <div class="cat-section" data-cat="subscription">
+          <div class="cat-header">
+            <div class="cat-icon">🔄</div>
+            <div>
+              <h2 class="cat-title">Seed Subscriptions</h2>
+              <p class="cat-desc">Get fresh native seeds delivered on a schedule. Perfect for ongoing restoration projects or building your collection season by season.</p>
+            </div>
+          </div>
+          <div class="products-grid">
+
+            <div class="product-card" data-cat="subscription">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1453904300235-0f2f60b15b5d?w=400&q=80" alt="Casual Grower Subscription" onerror="this.parentNode.innerHTML='<div class=img-loading>🌿</div>'"></div>
+              <div class="product-body"><div class="product-name">Casual Grower Subscription</div><div class="product-latin">1 curated packet — monthly</div><div class="product-desc">One hand-picked native seed packet delivered to your door each month. A new species every time — great for growing your native garden one plant at a time.</div><div class="product-footer"><div class="product-price">$8.00<span style="font-size:.75rem;font-weight:400;color:var(--text-light)">/mo</span></div><div class="product-tags"><span class="tag tag-water">Monthly</span></div></div></div>
+            </div>
+
+            <div class="product-card" data-cat="subscription">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1495107334309-fcf20504a5ab?w=400&q=80" alt="Habitat Builder Subscription" onerror="this.parentNode.innerHTML='<div class=img-loading>🏡</div>'"></div>
+              <div class="product-body"><div class="product-name">Habitat Builder Subscription</div><div class="product-latin">3 packets — monthly rotation</div><div class="product-desc">Three native seed packets per month, rotated seasonally to build a complete multi-species habitat over time. Includes bloom calendar.</div><div class="product-footer"><div class="product-price">$19.99<span style="font-size:.75rem;font-weight:400;color:var(--text-light)">/mo</span></div><div class="product-tags"><span class="tag tag-bee">Wildlife</span></div></div></div>
+            </div>
+
+            <div class="product-card" data-cat="subscription">
+              <div class="product-img"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=80" alt="Land Steward Subscription" onerror="this.parentNode.innerHTML='<div class=img-loading>🌻</div>'"></div>
+              <div class="product-body"><div class="product-name">Land Steward Subscription</div><div class="product-latin">Bulk seasonal blends — quarterly</div><div class="product-desc">Our largest subscription tier — a bulk native seed blend shipped quarterly, timed to California's seasons. Ideal for large properties and ongoing restoration.</div><div class="product-footer"><div class="product-price">$59.00<span style="font-size:.75rem;font-weight:400;color:var(--text-light)">/quarter</span></div><div class="product-tags"><span class="tag tag-water">Quarterly</span></div></div></div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- CTA bottom -->
         <div class="diy-kit-banner">
           <div>
-            <h3>Not Sure Where to Start?</h3>
-            <p>Our curated DIY kits take the guesswork out of going native. Each kit includes hand-selected plants for your specific goal — pollinators, lawn replacement, fire-wise, or low-water — with a detailed planting guide included.</p>
+            <h3>Not Sure What to Order?</h3>
+            <p>Book a free consultation and we'll match you with the right products for your yard size, sun exposure, and goals — and help you claim any available rebates.</p>
           </div>
-          <button class="btn btn-gold" onclick="showPage('contact')">Get a Kit Recommendation</button>
+          <button class="btn btn-gold" onclick="showPage('contact')">Book a Free Consultation</button>
         </div>
+
+          </div><!-- end shop-products -->
+
+          <!-- RIGHT: Sticky Cart Panel -->
+          <div class="shop-cart-panel" id="shopCartPanel">
+            <div class="scp-header" onclick="toggleMobileCart()">
+              <span style="font-size:1.1rem">🛒</span>
+              <h3>Your Cart</h3>
+              <span class="scp-count" id="scpCount">0 items</span>
+            </div>
+
+            <div class="scp-empty" id="scpEmpty">
+              <div style="font-size:2.5rem;margin-bottom:.75rem;opacity:.4">🌿</div>
+              <p>Your cart is empty.</p>
+              <p style="font-size:.8rem;margin-top:.3rem;opacity:.7">Click any product to add it.</p>
+            </div>
+
+            <div class="scp-items" id="scpItems"></div>
+
+            <div class="scp-footer" id="scpFooter" style="display:none">
+              <div class="scp-total-row">
+                <span class="scp-total-label">Subtotal</span>
+                <span class="scp-total-price" id="scpTotal">$0.00</span>
+              </div>
+              <button class="btn btn-gold" style="width:100%;padding:.85rem;font-size:.95rem;margin-top:1rem" onclick="checkout()">Request Order →</button>
+              <button onclick="clearCart()" style="width:100%;background:none;border:none;color:var(--text-light);font-size:.8rem;cursor:pointer;margin-top:.65rem;text-decoration:underline;font-family:'DM Sans',sans-serif">Clear cart</button>
+              <p style="font-size:.72rem;color:var(--text-light);text-align:center;margin-top:.75rem;line-height:1.5">We'll follow up to confirm your order and arrange pickup or delivery.</p>
+            </div>
+          </div><!-- end shop-cart-panel -->
+
+        </div><!-- end shop-layout -->
+
       </div>
     </div>
     <footer><p>&copy; 2026 <strong>Brandon's Backyard Botanica</strong> &middot; Ventura, California &middot; All rights reserved 🌿</p></footer>
@@ -694,8 +1094,8 @@ footer strong{color:var(--gold)}
     <div class="section section-cream">
       <div class="container">
 
-        <!-- SETUP BANNER -->
-        <div id="setupBanner" style="background:#fffbeb;border:1.5px solid var(--gold);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:2rem;display:flex;gap:1rem;align-items:flex-start">
+        <!-- Setup panel hidden — script URL is hardcoded -->
+        <div id="setupBanner" style="display:none">
           <span style="font-size:1.4rem;flex-shrink:0">⚙️</span>
           <div>
             <strong style="color:var(--bark);font-size:.95rem">One-time setup required to enable Google Sheets submissions</strong>
@@ -804,17 +1204,21 @@ function showPage(name) {
 function filterProducts(cat, btn) {
   document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
   btn.classList.add('active');
-  document.querySelectorAll('.product-card').forEach(function(card){
-    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'block' : 'none';
+  document.querySelectorAll('.cat-section').forEach(function(section){
+    var sectionCat = section.getAttribute('data-cat');
+    section.style.display = (cat === 'all' || sectionCat === cat) ? 'block' : 'none';
   });
 }
 
+
+// Hardcoded Apps Script URL — no setup needed
+var HARDCODED_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzsTMkGiupbuYRrn9jCdY7kNXPZPFWvoT63L2AfpSp6MjCzh-QgPEesHRS6Cf7S2ZzYB/exec';
 var STORAGE_KEY = 'bbb_script_url';
 
 function saveScriptUrl() {
   var url = document.getElementById('scriptUrlInput').value.trim();
   if (!url.startsWith('https://script.google.com')) {
-    alert('Please paste a valid Google Apps Script URL (starts with https://script.google.com)');
+    alert('Please paste a valid Google Apps Script URL');
     return;
   }
   localStorage.setItem(STORAGE_KEY, url);
@@ -824,8 +1228,9 @@ function saveScriptUrl() {
 }
 
 function getScriptUrl() {
-  return localStorage.getItem(STORAGE_KEY) || '';
+  return HARDCODED_SCRIPT_URL;
 }
+
 
 function showError(msg) {
   var el = document.getElementById('formError');
@@ -889,46 +1294,289 @@ function submitForm() {
   }, 600);
 }
 
-// Init on DOM ready
+// ---- Product data for modal ----
+var PRODUCTS = [
+  // Native Plants
+  {cat:'plant',catLabel:'Native Plant',icon:'🌸',name:'California Poppy',sub:'Eschscholzia californica',desc:'The state flower of California. A self-seeding annual that blazes gold and orange from February through May. Nearly zero water once established — it thrives on neglect and blooms most spectacularly in poor, dry soil.',price:6.00,details:['Self-seeding annual','Full sun','Zero summer water once established','State flower of California']},
+  {cat:'plant',catLabel:'Native Plant',icon:'🌿',name:'Cleveland Sage',sub:'Salvia clevelandii',desc:'Intensely fragrant, deer-resistant, and one of the best hummingbird plants in Southern California. Silvery-green foliage with stunning blue-purple flower spikes in early summer. The whole plant is aromatic year-round.',price:18.00,details:['Evergreen shrub','Full sun','Drought hardy','Deer resistant','Hummingbird favorite']},
+  {cat:'plant',catLabel:'Native Plant',icon:'🌳',name:'Valley Oak',sub:'Quercus lobata',desc:'California\'s most iconic native tree. The largest oak in the state, it supports over 100 species of native wildlife including insects, birds, and mammals. A heritage planting that will outlive generations.',price:45.00,details:['Deciduous tree','Full sun','Low water once established','Supports 100+ wildlife species','Heritage planting']},
+  {cat:'plant',catLabel:'Native Plant',icon:'💜',name:'Hummingbird Sage',sub:'Salvia spathacea',desc:'Bold magenta flower spikes shoot up in spring and attract hummingbirds continuously through fall. Spreads slowly as a beautiful, fragrant groundcover under oaks and in shady borders. One of our most requested plants.',price:16.00,details:['Shade tolerant','Spreads as groundcover','Hummingbird magnet','Low water','Fragrant foliage']},
+  {cat:'plant',catLabel:'Native Plant',icon:'🔴',name:'Toyon (Christmas Berry)',sub:'Heteromeles arbutifolia',desc:'The native shrub that gave Hollywood its name. Clusters of brilliant red berries appear in winter and feed dozens of bird species. An excellent evergreen privacy screen that asks for almost nothing in return.',price:24.00,details:['Evergreen shrub','Fire-wise','Winter berries for birds','Great privacy screen','Drought tolerant']},
+  {cat:'plant',catLabel:'Native Plant',icon:'🌾',name:'Purple Needlegrass',sub:'Stipa pulchra',desc:'California\'s official state grass. Creates a naturalistic, graceful lawn alternative that never needs mowing. Stunning purple seed heads in spring catch the light beautifully. Deep roots improve soil over time.',price:12.00,details:['CA state grass','No mowing needed','Deep root system','Drought hardy','Lawn alternative']},
+  {cat:'plant',catLabel:'Native Plant',icon:'🍃',name:'Coyote Brush',sub:'Baccharis pilularis',desc:'One of California\'s best erosion-control groundcovers. Fast-spreading, tough, and covered in tiny white flowers in fall that pollinators absolutely swarm. Fire-wise and requires zero irrigation once established.',price:14.00,details:['Fast-spreading groundcover','Erosion control','Fire-wise','Zero water once established','Pollinator magnet']},
+  {cat:'plant',catLabel:'Native Plant',icon:'🌵',name:'Prickly Pear',sub:'Opuntia basilaris',desc:'Striking architectural geometry, edible fruit (tunas), and absolutely zero irrigation once established. A bold statement plant for dry gardens and slopes. Provides food and shelter for native wildlife.',price:22.00,details:['Zero water once established','Edible fruit','Wildlife habitat','Full sun','Sculptural form']},
+  {cat:'plant',catLabel:'Native Plant',icon:'🌼',name:'California Buckwheat',sub:'Eriogonum fasciculatum',desc:'A pollinator powerhouse. Clusters of white-to-rust flowers bloom through summer and fall when little else is flowering — making it one of the most ecologically valuable natives you can plant. Beloved by bees and butterflies.',price:15.00,details:['Extended bloom season','Bees & butterflies','Drought tolerant','Full sun','Excellent for slopes']},
+  {cat:'plant',catLabel:'Native Plant',icon:'🌲',name:'Coast Live Oak',sub:'Quercus agrifolia',desc:'The backbone of California\'s coastal woodland. An evergreen oak that provides year-round canopy, supports hundreds of insect species, and creates the structure that entire ecosystems are built around. The ultimate native tree.',price:55.00,details:['Evergreen tree','Year-round canopy','Supports hundreds of insects','Low water','Long-lived heritage tree']},
+  {cat:'plant',catLabel:'Native Plant',icon:'🟣',name:'Elegant Clarkia',sub:'Clarkia unguiculata',desc:'Lavender-pink flowers blanket California roadsides from late spring through early summer. Easy from seed, stunning in mass plantings, and a favorite of native bees. Germinates quickly and puts on a spectacular show.',price:5.00,details:['Annual wildflower','Easy from seed','Native bee favorite','Low water','Great in mass plantings']},
+  {cat:'plant',catLabel:'Native Plant',icon:'🌱',name:'Woolly Yarrow',sub:'Achillea millefolium',desc:'Dense, ferny, and wonderfully fragrant groundcover that tolerates foot traffic. Creates a soft, naturalistic lawn alternative that never needs mowing, fertilizing, or pesticides. White flower heads attract beneficial insects.',price:11.00,details:['Lawn alternative','Tolerates foot traffic','Fragrant foliage','No mowing needed','Attracts beneficial insects']},
+  // Retail Packets
+  {cat:'retail',catLabel:'Retail Packet',icon:'🌾',name:'Prairie Meadow Mix',sub:'Regional meadow blend',desc:'A beautiful regional wildflower and grass blend that mimics native meadow communities. Self-sustaining once established — blooms from early spring through fall with minimal water.',price:12.99,details:['Covers 150 sq ft','Low water once established','Best sown in fall']},
+  {cat:'retail',catLabel:'Retail Packet',icon:'🌿',name:'Shade Native Blend',sub:'Low-sun native species',desc:'Specially selected native species that thrive in part shade and low-light conditions. Perfect for areas under trees, along north-facing walls, or shaded patios.',price:10.99,details:['Covers 75 sq ft','Part shade to full shade','No fertilizer needed']},
+  {cat:'retail',catLabel:'Retail Packet',icon:'☀️',name:'Drought Defender Mix',sub:'Dry climate blend',desc:'Ultra-drought-tolerant native mix designed for the hottest, driest spots in your yard. Once established, survives entirely on Ventura County rainfall alone.',price:13.99,details:['Covers 120 sq ft','Full sun','Zero summer water once established']},
+  // Bulk Supply
+  {cat:'bulk',catLabel:'Bulk Supply',icon:'🌾',name:'Native Prairie Restoration',sub:'Contractor acreage mix',desc:'Professional-grade native prairie seed mix for large-scale ecological restoration projects. Used by contractors, conservation organizations, and land managers across Southern California.',price:249.00,details:['25 lb bag','Covers ~1 acre','Contractor grade','Contact us for volume pricing']},
+  {cat:'bulk',catLabel:'Bulk Supply',icon:'🏔️',name:'Roadside Erosion Mix',sub:'Slope stabilization blend',desc:'Deep-rooting native mix engineered to stabilize slopes, roadsides, and erosion-prone areas. Features fast-establishing natives with extensive root systems.',price:399.00,details:['50 lb bag','Covers ~1.5 acres','Slope & erosion rated','Great for fire recovery']},
+  {cat:'bulk',catLabel:'Bulk Supply',icon:'🧪',name:'Custom Regional Blend',sub:'25 lb custom ecology mix',desc:'A fully custom native seed blend formulated to match your specific site ecology, soil type, and restoration goals. Contact us to design your blend — we source locally whenever possible.',price:299.00,details:['25 lb bag','Custom formulated','Site-specific species selection','Contact us to design yours']},
+  {cat:'bulk',catLabel:'Bulk Supply',icon:'🏘️',name:'HOA Conversion Mix',sub:'Large property native turf',desc:'Designed for HOA common areas and large residential properties transitioning from turf grass to a beautiful native groundcover. Approved for use in Ventura County water conservation rebate programs.',price:449.00,details:['50 lb bag','Covers ~1 acre','HOA & rebate eligible','Low maintenance once established']},
+  // Garden Kits
+  {cat:'kit',catLabel:'Garden Kit',icon:'🐝',name:'Pollinator Garden Kit',sub:'Seed + Soil Booster + planting guide',desc:'Everything you need to create a thriving pollinator habitat from scratch. Our most popular kit — includes a curated native seed blend, organic soil booster, and a detailed step-by-step planting guide.',price:39.00,details:['Includes soil booster','Full planting guide included','Supports bees & butterflies','Great beginner kit']},
+  {cat:'kit',catLabel:'Garden Kit',icon:'🌱',name:'Native Lawn Replacement Kit',sub:'Seed + Amendment + flags',desc:'Ditch the turf and replace it with a thriving native groundcover. Includes a full native seed blend, soil amendment to prep your existing soil, and marking flags for layout planning.',price:59.00,details:['Includes soil amendment','Marking flags included','Cuts water use 60–80%','Rebate eligible']},
+  {cat:'kit',catLabel:'Garden Kit',icon:'🌄',name:'Backyard Prairie Kit',sub:'Premium meadow install kit',desc:'Our premium kit for creating a full native meadow aesthetic in your backyard. Includes a curated multi-species blend for stunning seasonal color waves — spring wildflowers through fall grasses.',price:79.00,details:['Premium multi-species blend','Seasonal bloom succession','Full planting guide','Best for larger spaces']},
+  {cat:'kit',catLabel:'Garden Kit',icon:'🦋',name:'Butterfly Habitat Kit',sub:'Target bloom species mix',desc:'Specially selected native species that serve as both host and nectar plants for California\'s native butterfly populations, including monarchs, swallowtails, and painted ladies.',price:44.00,details:['Host + nectar plants','Supports monarch butterflies','Planting guide included','Pairs well with milkweed']},
+  // Starter Bundles
+  {cat:'bundle',catLabel:'Starter Bundle',icon:'🏠',name:'Homeowner Starter Bundle',sub:'3 packets + mini spreader',desc:'The perfect entry point for a first-time native gardener. Includes 3 of our most popular native seed packets plus a mini hand spreader for easy, even seed application.',price:34.99,details:['3 curated seed packets','Mini spreader included','Best value for beginners','Makes a great gift']},
+  {cat:'bundle',catLabel:'Starter Bundle',icon:'💧',name:'Lawn Conversion Bundle',sub:'Seed + Booster + erosion mat',desc:'Everything you need to convert a traditional lawn to native groundcover in one box: native seed blend, organic soil booster, and a biodegradable erosion mat to hold seeds in place during establishment.',price:119.00,details:['Full native seed blend','Organic soil booster','Biodegradable erosion mat','Rebate eligible']},
+  {cat:'bundle',catLabel:'Starter Bundle',icon:'🌸',name:'Pollinator Paradise Bundle',sub:'4 specialty blends + booklet',desc:'Four hand-selected native seed specialty blends targeting bees, butterflies, hummingbirds, and beneficial insects — plus our 24-page native gardening booklet. Our most comprehensive bundle.',price:89.00,details:['4 specialty seed blends','24-page booklet included','Targets 4 pollinator types','Best value pollinator bundle']},
+  // Subscriptions
+  {cat:'subscription',catLabel:'Subscription',icon:'🌿',name:'Casual Grower Subscription',sub:'1 curated packet — monthly',desc:'One hand-picked native seed packet delivered to your door each month. A different species every time — great for slowly building your native garden without commitment to a large purchase upfront.',price:8.00,priceLabel:'/mo',details:['1 packet per month','New species each month','Cancel anytime','Free shipping']},
+  {cat:'subscription',catLabel:'Subscription',icon:'🏡',name:'Habitat Builder Subscription',sub:'3 packets — monthly rotation',desc:'Three native seed packets per month, rotated seasonally to systematically build a complete multi-species habitat over time. Includes a bloom calendar showing when each plant will flower.',price:19.99,priceLabel:'/mo',details:['3 packets per month','Seasonal rotation plan','Bloom calendar included','Cancel anytime']},
+  {cat:'subscription',catLabel:'Subscription',icon:'🌻',name:'Land Steward Subscription',sub:'Bulk seasonal blends — quarterly',desc:'Our largest subscription tier: a bulk native seed blend shipped quarterly, timed to California\'s planting seasons. Ideal for large properties, ongoing restoration projects, and serious native gardeners.',price:59.00,priceLabel:'/quarter',details:['Bulk blend each quarter','Timed to CA planting seasons','Best for large properties','Priority customer support']},
+];
+
+var currentProduct = null;
+var currentQty = 1;
+var cart = [];
+
+// Wire up all product cards on page load — handled in DOMContentLoaded below
+
+function openModal(index) {
+  currentProduct = PRODUCTS[index];
+  currentQty = 1;
+
+  document.getElementById('qtyNum').textContent = '1';
+  document.getElementById('modalCategory').textContent = currentProduct.catLabel;
+  document.getElementById('modalTitle').textContent = currentProduct.name;
+  document.getElementById('modalSubtitle').textContent = currentProduct.sub;
+  document.getElementById('modalDesc').textContent = currentProduct.desc;
+  document.getElementById('modalPrice').textContent = '$' + currentProduct.price.toFixed(2) + (currentProduct.priceLabel || '');
+
+  // Details pills
+  var detailsEl = document.getElementById('modalDetails');
+  detailsEl.innerHTML = '';
+  (currentProduct.details || []).forEach(function(d) {
+    var span = document.createElement('span');
+    span.className = 'modal-detail-pill';
+    span.textContent = d;
+    detailsEl.appendChild(span);
+  });
+
+  // Image
+  var imgEl = document.getElementById('modalImg');
+  imgEl.innerHTML = '<button class="modal-close" onclick="closeModalDirect()">✕</button>';
+  var bgColors = {retail:'#d4e8cf',bulk:'#c8ddc2',kit:'#fef0c8',bundle:'#fde8e0',subscription:'#e0ecd8'};
+  imgEl.style.background = bgColors[currentProduct.cat] || '#d4e8cf';
+  var emoji = document.createElement('div');
+  emoji.style.cssText = 'font-size:5rem;position:absolute';
+  emoji.textContent = currentProduct.icon;
+  imgEl.appendChild(emoji);
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
+}
+
+function closeModalDirect() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function changeQty(delta) {
+  currentQty = Math.max(1, currentQty + delta);
+  document.getElementById('qtyNum').textContent = currentQty;
+}
+
+function addToCart() {
+  if (!currentProduct) return;
+  // Check if already in cart
+  var existing = cart.find(function(i){ return i.name === currentProduct.name; });
+  if (existing) {
+    existing.qty += currentQty;
+  } else {
+    cart.push({ name: currentProduct.name, icon: currentProduct.icon, price: currentProduct.price, priceLabel: currentProduct.priceLabel || '', qty: currentQty });
+  }
+  closeModalDirect();
+  renderCart();
+  showToast('✓ ' + currentProduct.name + ' added to cart');
+}
+
+function renderCart() {
+  var itemsEl = document.getElementById('cartItems');
+  var countEl = document.getElementById('cartCount');
+  var totalEl = document.getElementById('cartTotal');
+  var fab = document.getElementById('cartFab');
+
+  // Side panel elements
+  var scpItems = document.getElementById('scpItems');
+  var scpEmpty = document.getElementById('scpEmpty');
+  var scpFooter = document.getElementById('scpFooter');
+  var scpCount = document.getElementById('scpCount');
+  var scpTotal = document.getElementById('scpTotal');
+
+  if (cart.length === 0) {
+    // Drawer
+    if (itemsEl) itemsEl.innerHTML = '<div class="cart-empty">Your cart is empty.<br>Browse our products to get started!</div>';
+    if (totalEl) totalEl.textContent = '$0.00';
+    if (countEl) countEl.textContent = '0';
+    if (fab) fab.classList.remove('visible');
+    // Side panel
+    if (scpItems) scpItems.innerHTML = '';
+    if (scpEmpty) scpEmpty.style.display = 'block';
+    if (scpFooter) scpFooter.style.display = 'none';
+    if (scpCount) scpCount.textContent = '0 items';
+    return;
+  }
+
+  var total = 0;
+  var totalItems = 0;
+
+  // Build drawer items
+  if (itemsEl) {
+    itemsEl.innerHTML = '';
+    cart.forEach(function(item, idx) {
+      total += item.price * item.qty;
+      totalItems += item.qty;
+      var div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = '<div class="cart-item-icon">' + item.icon + '</div>' +
+        '<div style="flex:1"><div class="cart-item-name">' + item.name + '</div>' +
+        '<div class="cart-item-price">$' + item.price.toFixed(2) + item.priceLabel + ' × ' + item.qty + '</div></div>' +
+        '<button class="cart-item-remove" onclick="removeFromCart(' + idx + ')">✕</button>';
+      itemsEl.appendChild(div);
+    });
+  } else {
+    // Calculate totals without drawer
+    cart.forEach(function(item) { total += item.price * item.qty; totalItems += item.qty; });
+  }
+
+  // Update drawer totals
+  if (totalEl) totalEl.textContent = '$' + total.toFixed(2);
+  if (countEl) countEl.textContent = totalItems;
+  if (fab) fab.classList.add('visible');
+
+  // Build side panel items
+  if (scpItems) {
+    scpItems.innerHTML = '';
+    cart.forEach(function(item, idx) {
+      var div = document.createElement('div');
+      div.className = 'scp-item';
+      div.innerHTML =
+        '<div class="scp-item-icon">' + item.icon + '</div>' +
+        '<div class="scp-item-info">' +
+          '<div class="scp-item-name">' + item.name + '</div>' +
+          '<div class="scp-item-price">$' + item.price.toFixed(2) + (item.priceLabel||'') + '</div>' +
+        '</div>' +
+        '<div class="scp-item-qty">' +
+          '<button class="scp-qty-btn" onclick="scpChangeQty(' + idx + ',-1)">−</button>' +
+          '<span class="scp-item-qty-num">' + item.qty + '</span>' +
+          '<button class="scp-qty-btn" onclick="scpChangeQty(' + idx + ',1)">+</button>' +
+        '</div>' +
+        '<button class="scp-item-remove" onclick="removeFromCart(' + idx + ')">✕</button>';
+      scpItems.appendChild(div);
+    });
+  }
+
+  if (scpEmpty) scpEmpty.style.display = 'none';
+  if (scpFooter) scpFooter.style.display = 'block';
+  if (scpCount) scpCount.textContent = totalItems + (totalItems === 1 ? ' item' : ' items');
+  if (scpTotal) scpTotal.textContent = '$' + total.toFixed(2);
+}
+
+function scpChangeQty(idx, delta) {
+  cart[idx].qty = Math.max(1, cart[idx].qty + delta);
+  renderCart();
+}
+
+function toggleMobileCart() {
+  var panel = document.getElementById('shopCartPanel');
+  if (panel) panel.classList.toggle('mobile-open');
+}
+
+function clearCart() {
+  cart = [];
+  renderCart();
+}
+
+function removeFromCart(idx) {
+  cart.splice(idx, 1);
+  renderCart();
+}
+
+function openCart() {
+  document.getElementById('cartDrawer').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function checkout() {
+  if (cart.length === 0) return;
+  // Build order summary and send to contact page
+  var summary = cart.map(function(i){ return i.name + ' x' + i.qty; }).join(', ');
+  closeCart();
+  showPage('contact');
+  // Pre-fill the message field
+  setTimeout(function() {
+    var msgField = document.getElementById('f_message');
+    if (msgField) msgField.value = 'I\'d like to order: ' + summary + '. Please confirm availability and arrange pickup or delivery.';
+    var interestField = document.getElementById('f_interest');
+    if (interestField) interestField.value = 'Delivery & Installation';
+  }, 300);
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 2800);
+}
+
+// ---- Init on DOM ready ----
 document.addEventListener('DOMContentLoaded', function() {
   var firstTab = document.querySelector('#navTabs li[data-page="home"]');
   if (firstTab) firstTab.classList.add('active');
+
   var saved = getScriptUrl();
   var urlInput = document.getElementById('scriptUrlInput');
   if (saved && urlInput) urlInput.value = saved;
 
-  // Load plant photos via Wikipedia REST API — guaranteed correct, no filename guessing
+  // Wire up product card clicks
+  document.querySelectorAll('.product-card').forEach(function(card, i) {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', function() { openModal(i); });
+  });
+
+  // Load Wikipedia photos for native plant cards
   document.querySelectorAll('.product-card[data-wiki]').forEach(function(card) {
     var taxon = card.getAttribute('data-wiki');
     var imgBox = card.querySelector('.product-img');
+    if (!imgBox) return;
     fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + taxon)
       .then(function(r) { return r.json(); })
       .then(function(data) {
-        if (data.originalimage && data.originalimage.source) {
+        var src = (data.originalimage && data.originalimage.source) ? data.originalimage.source
+                : (data.thumbnail && data.thumbnail.source) ? data.thumbnail.source : null;
+        if (src) {
           var img = document.createElement('img');
-          img.alt = taxon.replace(/_/g,' ');
-          img.style.opacity = '0';
-          img.style.transition = 'opacity 0.4s';
+          img.alt = taxon.replace(/_/g, ' ');
+          img.style.cssText = 'width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.4s';
           img.onload = function() { img.style.opacity = '1'; };
-          // Use originalimage for best quality
-          img.src = data.originalimage.source;
-          imgBox.innerHTML = '';
-          imgBox.appendChild(img);
-        } else if (data.thumbnail && data.thumbnail.source) {
-          var img = document.createElement('img');
-          img.alt = taxon.replace(/_/g,' ');
-          img.style.opacity = '0';
-          img.style.transition = 'opacity 0.4s';
-          img.onload = function() { img.style.opacity = '1'; };
-          img.src = data.thumbnail.source;
+          img.src = src;
           imgBox.innerHTML = '';
           imgBox.appendChild(img);
         } else {
-          imgBox.innerHTML = '<span style="font-size:3rem;opacity:.4">🌿</span>';
+          imgBox.innerHTML = '<span style="font-size:2.5rem;opacity:.35">🌿</span>';
         }
       })
       .catch(function() {
-        imgBox.innerHTML = '<span style="font-size:3rem;opacity:.4">🌿</span>';
+        imgBox.innerHTML = '<span style="font-size:2.5rem;opacity:.35">🌿</span>';
       });
   });
 });
